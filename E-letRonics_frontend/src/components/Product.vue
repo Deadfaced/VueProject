@@ -1,8 +1,8 @@
 <template>
-        <div class="flex justify-center items-center mx-auto">
+    <div class="flex justify-center items-center mx-auto">
       <div class="card glass">
         <figure>
-          <img class="w-full h-auto" src="https://static.pcdiga.com/media/catalog/product/cache/4a9972e1440204cef7cf19ceb7c4fc35/2/_/2_p061426.jpg" alt="PC" />
+          <img class="w-full h-auto transition-transform transform hover:scale-105" src="https://static.pcdiga.com/media/catalog/product/cache/4a9972e1440204cef7cf19ceb7c4fc35/2/_/2_p061426.jpg" alt="PC" />
         </figure>
         <div class="flex flex-col justify-between items-center w-full h-full p-4">
           <h2 class="m-0 p-0 text-2xl font-bold text-center">Life Hack</h2>
@@ -33,10 +33,13 @@
   .card {
     transition: all 0.3s ease-in-out;
   }
-  .card:hover {
-    transform: scale(1.1);
-  } 
+  
   .btn {
     transition: all 0.3s ease-in-out;
   }
+  
+  .transition-transform {
+    transition: transform 0.3s ease-in-out;
+  }
   </style>
+  

@@ -12,13 +12,7 @@ import CardCart from './components/CardCart.vue';
 </script>
 
 <template>
-  <Navbar />
-  <TestimonialCard/>
-  <ProductGrid></ProductGrid>
-  <card-cart/>
-  <ContactForm/>
-  <Hero/>
-  <Footer></Footer>
+  
 
 </template>
 
