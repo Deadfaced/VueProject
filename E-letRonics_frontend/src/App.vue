@@ -1,11 +1,13 @@
 <script setup>
 
+import Navbar from './components/navbar.vue';
+import Hero from './components/hero.vue';
+
 </script>
 
 <template>
- <button class="btn w-64 rounded-full">Button</button>
+  <Navbar />
+  <Hero />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

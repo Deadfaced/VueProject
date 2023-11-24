@@ -1,7 +1,47 @@
-# Vue 3 + Vite
+# Installation 🔧 🔨
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+`Clone the repository`
 
-## Recommended IDE Setup
+```bash
+https://github.com/Deadfaced/VueProject.git
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+`Change Directory to E-letRonics_frontend`
+
+```bash
+npm i
+```
+>install dependencies
+
+
+`Run front end`
+
+```bash
+npm run dev
+```
+
+# How to use Tailwind CSS 
+
+`Install Tailwind CSS intelisense extension in VS Code !!!!!`    
+
+` Step 1- Go Here 👇`    
+
+```bash
+https://tailwindcss.com/docs/installation
+```
+
+`Step 2- On the left side of the page scroll down to the section you want and Learn that shit`
+
+`Step 3- Profit 💰`    
+
+# How to use DaisyUI 🌼
+    
+` Step 1- Go Here 👇`    
+    
+```bash
+https://daisyui.com/components/
+```
+    
+`Step 2- Search the component you want, click HTML and copy the code and use that shit`
+    
+`Step 3- Profit 💰`
