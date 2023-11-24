@@ -19,6 +19,7 @@ import CardCart from './components/CardCart.vue';
   <ContactForm/>
   <Hero/>
   <Footer></Footer>
+
 </template>
 
 <style scoped></style>
