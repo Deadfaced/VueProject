@@ -3,9 +3,7 @@
 </script>
 
 <template>
- <h1 class="text-3xl font-bold underline bg-red-200">
-    Hello world!
-  </h1>
+ <button class="btn w-64 rounded-full">Button</button>
 </template>
 
 <style scoped>
