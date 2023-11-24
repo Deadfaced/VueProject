@@ -4,13 +4,13 @@ import Navbar from './components/navbar.vue';
 import Hero from './components/hero.vue';
 import ContactForm from './components/ContactForm.vue';
 import Footer from './components/Footer.vue';
-import Product from './components/Product.vue';
+import ProductGrid from './components/ProductGrid.vue';
 
 </script>
 
 <template>
   <Navbar />
-  <Product></Product>
+  <ProductGrid></ProductGrid>
   <ContactForm/>
   <Hero />
   <Footer></Footer>
