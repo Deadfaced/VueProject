@@ -1,22 +1,18 @@
 <template>
-    <p class="description">
-    <slot></slot>
+  <p class="description">
+    {{ description }}
   </p>
-  </template>
-  
-  <script>
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    setup() {
+</template>
 
-return {
+<script>
+import { ref } from 'vue';
 
+export default {
+  props: {
+    description: String,
+  },
 };
-},
-  });
-  </script>
-  
-  <style scoped>
-  </style>
-  
+</script>
+
+<style scoped>
+</style>

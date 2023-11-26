@@ -1,20 +1,17 @@
 <template>
   <figure class="image">
-    <slot></slot>
+    <img class="w-full h-auto transition-transform transform hover:scale-105" :src="imageUrl" />
   </figure>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { ref } from 'vue';
 
-export default defineComponent({
-  setup() {
-
-return {
-
+export default {
+  props: {
+    imageUrl: String,
+  },
 };
-},
-});
 </script>
 
 <style scoped>
