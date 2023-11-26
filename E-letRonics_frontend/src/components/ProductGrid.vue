@@ -4,7 +4,7 @@
       <div class="flex flex-col text-center w-full mb-20">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-100">Products</h1>
       </div>
-      <div class="grid grid-cols-4 grid-rows-2 gap-4">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div v-for="index in 8" :key="index">
           <div class="relative">
             <Product></Product>
@@ -14,20 +14,20 @@
     </div>
   </section>
 </template>
-   
-   <script>
-   import Product from './Product.vue';
-   
-   export default {
-     setup() {
-       return {};
-     },
-     components: {
-       Product,
-     },
-   };
-   </script>
-   
-   <style lang="scss" scoped>
-   
-   </style>
+
+<script>
+import Product from './Product.vue';
+
+export default {
+  setup() {
+    return {};
+  },
+  components: {
+    Product,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+
+</style>

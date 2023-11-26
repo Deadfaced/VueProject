@@ -15,9 +15,7 @@
   export default {
     methods: {
       handleFormSubmission(formData) {
-        // Implement logic to handle the form data
         console.log('Form submitted:', formData);
-        // You can send the data to a server, display a confirmation message, etc.
       },
     },
     components: {
@@ -29,7 +27,6 @@
   </script>
   
   <style scoped>
-  /* Add any additional styling for the contact page if needed */
   .container {
     max-width: 1200px;
   }

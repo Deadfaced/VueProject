@@ -69,8 +69,6 @@ export default {
   },
   methods: {
     submitForm() {
-      // Add logic to handle form submission
-      // You can use an event to notify the parent component
       this.$emit('form-submitted', this.formData);
     },
   },
@@ -78,5 +76,4 @@ export default {
 </script>
 
 <style scoped>
-/* Add any additional styling for the form if needed */
 </style>

@@ -14,17 +14,16 @@
   </script>
   
   <style scoped>
-  /* Add styling for the contact information if needed */
   .contact-info {
     max-width: 400px;
     margin: 0 auto;
     line-height: 1.5;
-    color: #333; /* Adjust the color as needed */
+    color: #333;
   }
   
   .contact-info strong {
     font-weight: bold;
-    color: #007bff; /* Adjust the color as needed */
+    color: #007bff;
   }
   </style>
   
