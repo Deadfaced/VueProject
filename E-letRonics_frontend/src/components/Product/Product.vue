@@ -29,12 +29,12 @@
 import { ref } from 'vue';
 import ImageComponent from './ProductImage.vue';
 import TitleComponent from './Title.vue';
-import DescriptionComponent from './Description.vue';
+import DescriptionComponent from './ProductDescription.vue';
 import Rating from '../Rating.vue';
 
 export default {
   setup() {
-    const imageUrl = ref('https://static.pcdiga.com/media/catalog/product/cache/4a9972e1440204cef7cf19ceb7c4fc35/2/_/2_p061426.jpg');
+    const imageUrl = ref('https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg');
     const imageAlt = ref('PC');
     const itemTitle = ref('Life Hack');
     const itemDescription = ref('Discover the art of parking your car in your garage with ease.');
