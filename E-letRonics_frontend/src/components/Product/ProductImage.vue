@@ -1,5 +1,5 @@
 <template>
-  <figure>
+  <figure class="image">
     <slot></slot>
   </figure>
 </template>
@@ -8,6 +8,12 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  setup() {
+
+return {
+
+};
+},
 });
 </script>
 

@@ -3,7 +3,7 @@
     <div class="card glass">
       <ImageComponent>
         <template #default>
-          <img class="w-full h-auto transition-transform transform hover:scale-105" :src="imageUrl" :alt="imageAlt" />
+          <img class="w-full h-auto transition-transform transform hover:scale-105" :src="imageUrl"/>
         </template>
       </ImageComponent>
 
@@ -17,7 +17,7 @@
         </DescriptionComponent>
 
         <div class="flex flex-col justify-between items-center w-full mt-4">
-          <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Learn Now!</button>
+            <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Read More</button>
           <Rating></Rating>
         </div>
       </div>
@@ -35,13 +35,11 @@ import Rating from '../Rating.vue';
 export default {
   setup() {
     const imageUrl = ref('https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg');
-    const imageAlt = ref('PC');
-    const itemTitle = ref('Life Hack');
-    const itemDescription = ref('Discover the art of parking your car in your garage with ease.');
+    const itemTitle = ref('Product Title');
+    const itemDescription = ref('Product Description');
 
     return {
       imageUrl,
-      imageAlt,
       itemTitle,
       itemDescription,
     };
