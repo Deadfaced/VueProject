@@ -31,6 +31,7 @@ export default class ProductsController {
  *                   type: string
  *                   example: "Internal Server Error"
  */
+
   public async index({ response }: HttpContextContract) {
     try {
       const products = await Product.all()
@@ -40,4 +41,18 @@ export default class ProductsController {
       response.status(500).json(error)
     }
   }
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const product = await Product.find(params.id);
+
+      if (!product) {
+        return response.status(404).json({ message: 'Product not found' });
+      }
+
+      return response.json(product);
+    } catch (error) {
+      return response.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
 }
+

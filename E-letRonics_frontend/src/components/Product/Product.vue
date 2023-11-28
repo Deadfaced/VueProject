@@ -1,3 +1,4 @@
+<!-- Product.vue -->
 <template>
   <div class="flex justify-center items-center mx-auto">
     <div class="card glass">
@@ -37,6 +38,7 @@ import DescriptionComponent from './Description.vue';
 import Price from './Price.vue';
 import Quantity from './Quantity.vue';
 import Rating from './Rating.vue';
+import { fetchData } from '../../Services/apiService.js';
 
 export default {
   props: ['item'],
@@ -53,17 +55,23 @@ export default {
 
     onMounted(async () => {
       try {
-        const data = await fetchData(`http://127.0.0.1:3333/products/${props.item.id}`);
+        const data = await fetchData('http://127.0.0.1:3333/products');
 
-        item.value = {
-          name: data.name,
-          description: data.description,
-          image: data.image,
-          id: data.id,
-          price: data.price,
-          quantity: data.quantity,
-          rating: data.rating,
-        };
+        const product = data.find(product => product.id === props.item.id);
+
+        if (product) {
+          item.value = {
+            name: product.name,
+            description: product.description,
+            image: product.image,
+            id: product.id,
+            price: product.price,
+            quantity: product.quantity,
+            rating: product.rating,
+          };
+        } else {
+          console.error('Product not found');
+        }
       } catch (error) {
         console.error('Error calling API:', error);
       }

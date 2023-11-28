@@ -4,15 +4,10 @@
   </p>
 </template>
 
-<script>
-import { ref } from 'vue';
-
-export default {
-  props: {
-    description: String,
-  },
-};
+<script setup>
+defineProps(['description']);
 </script>
 
 <style scoped>
+/* Your styling */
 </style>

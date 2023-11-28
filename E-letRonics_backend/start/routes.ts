@@ -25,5 +25,6 @@ Route.get('/', async () => {
 })
 
 Route.get('/products', 'ProductsController.index')
+Route.get('/products/:id', 'ProductsController.show');
 Route.post('/check-coupon', 'CouponsController.checkCoupon')
 Route.post('/checkout', 'CheckoutsController.store')
