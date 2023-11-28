@@ -1,11 +1,12 @@
 <template>
   <div class="max-w-md mx-auto">
-    <div class="card card-side bg-base-100 shadow-xl p-4 mt-4 flex">
-      <figure class="flex-none mr-4">
-        <img src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Item" class="w-40 h-auto" />
+    <div class="bg-base-100 shadow-xl p-4 mt-4 flex flex-col">
+      <figure>
+        <img src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Item" class="custom-img h-auto rounded-lg" />
       </figure>
       <div class="card-body">
-        <h2 class="card-title text-sm">{{ Title }} | {{ Description }}</h2>
+        <h2 class="card-title text-sm">{{ Title }}</h2>
+        <h2 class="card-title text-sm">{{ Description }}</h2>
         <h2 class="card-title text-sm">{{ Category }}</h2>
         <h2 class="card-title text-sm">Qty: {{ Qty }}</h2>
         <h2 class="card-title text-sm">Unit Cost: {{ Price }}</h2>
@@ -36,5 +37,5 @@ export default {
 </script>
 
 <style>
-
+  
 </style>
