@@ -1,14 +1,18 @@
 <template>
   <div class="flex justify-center items-center mx-auto">
     <div class="card glass">
-      <ImageComponent :imageUrl="item.imageUrl" />
+      <ImageComponent v-if="item && item.imageUrl" :imageUrl="item.imageUrl" />
 
       <div class="flex flex-col justify-between items-center w-full h-full p-4">
         <TitleComponent :title="item.title" />
         <DescriptionComponent :description="item.description" />
 
         <div class="flex flex-col justify-between items-center w-full mt-4">
-          <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Read More</button>
+          <router-link :to="{ name: 'productDetail', params: { id: item.id } }">
+            <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">
+              Read More
+            </button>
+          </router-link>
           <Rating></Rating>
         </div>
       </div>
@@ -26,8 +30,9 @@ import DescriptionComponent from './ProductDescription.vue';
 import Rating from '../Rating.vue';
 
 export default {
-  setup() {
-    const item = ref({});
+  props: ['item'],
+  setup(props) {
+    const item = ref(props.item);
 
     onMounted(async () => {
       try {
@@ -37,6 +42,7 @@ export default {
           title: data.title,
           description: data.description,
           imageUrl: data.imageUrl,
+          id: props.item.id,
         };
       } catch (error) {
         console.error('Error calling API:', error);

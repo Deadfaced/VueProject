@@ -7,7 +7,14 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div v-for="index in 8" :key="index">
           <div class="relative">
-            <Product></Product>
+            <Product>
+              <template v-slot:image>
+              </template>
+              <template v-slot:title>
+              </template>
+              <template v-slot:description>
+              </template>
+            </Product>
           </div>
         </div>
       </div>
@@ -28,6 +35,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
