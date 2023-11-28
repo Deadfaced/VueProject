@@ -7,8 +7,7 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div v-for="product in products" :key="product.id">
           <div class="relative">
-            <Product :item="product">
-            </Product>
+            <Product :item="product"></Product>
           </div>
         </div>
       </div>
@@ -18,6 +17,7 @@
 
 <script>
 import Product from './Product.vue';
+import { ref, onMounted } from 'vue';
 import { fetchData } from '../../Services/apiService.js';
 
 export default {
@@ -44,5 +44,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
