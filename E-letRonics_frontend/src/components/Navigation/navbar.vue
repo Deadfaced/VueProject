@@ -5,8 +5,8 @@
 <template>
     <div class="navbar">
         <div class="flex-1">
-            <a class="btn btn-ghost text-xl">Home</a>
-            <a class="btn btn-ghost text-xl">About Us</a>
+            <router-link to="/" class="btn btn-ghost text-xl">Home</router-link>
+            <router-link to="/About" class="btn btn-ghost text-xl">About</router-link>
             <a class="btn btn-ghost text-xl">Contact</a>
         </div>
         <div class="flex-none">
@@ -20,7 +20,7 @@
                         </svg>
                         <span class="badge badge-sm indicator-item">8</span>
                     </div>
-                </label>               
+                </label>
             </div>
         </div>
     </div>
