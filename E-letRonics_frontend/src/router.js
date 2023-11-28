@@ -4,9 +4,8 @@ import ProductDetails from './components/Product/Details.vue';
 
 const routes = [
   { path: '/', component: ProductGrid },
-  { path: '/product/:id', component: ProductDetails, props: true },
+  { path: '/product/:id', name: 'productDetails', component: ProductDetails, props: true },
 ];
-
 const router = createRouter({
   history: createWebHistory(),
   routes,

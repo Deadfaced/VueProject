@@ -4,10 +4,11 @@
   </p>
 </template>
 
-<script setup>
-defineProps(['description']);
+<script>
+export default {
+  props: ['description'],
+};
 </script>
 
 <style scoped>
-/* Your styling */
 </style>

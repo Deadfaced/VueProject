@@ -1,26 +1,28 @@
 <template>
-    <p class="price">{{ formattedPrice }}</p>
-  </template>
-  
-  <script>
-  import { ref, computed } from 'vue';
-  
-  export default {
-    props: {
-      price: Number,
+  <p>{{ formattedPrice }}</p>
+</template>
+
+<script>
+import { computed } from 'vue';
+
+export default {
+  props: {
+    price: {
+      type: Number,
+      required: true,
     },
-    setup(props) {
-      const formattedPrice = computed(() => {
-        return `$${props.price.toFixed(2)}`;
-      });
-  
-      return {
-        formattedPrice,
-      };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  </style>
-  
+  },
+  setup(props) {
+    const formattedPrice = computed(() => {
+      return props.price.toFixed(2);
+    });
+
+    return {
+      formattedPrice,
+    };
+  },
+};
+</script>
+
+<style scoped>
+</style>

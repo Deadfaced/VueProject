@@ -21,13 +21,25 @@ import { ref, onMounted } from 'vue';
 import { fetchData } from '../../Services/apiService.js';
 
 export default {
+  components: {
+    Product,
+  },
   setup() {
     const products = ref([]);
 
     onMounted(async () => {
       try {
-        const data = await fetchData('http://127.0.0.1:3333/products');
-        products.value = data;
+        const data = await fetchData('https://fakestoreapi.com/products');
+        // Default values
+        products.value = data.map(product => ({
+          name: product.title || 'Name Unavailable',
+          description: product.description || 'Description Not Available',
+          image: product.image || 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png',
+          id: product.id,
+          price: product.price || 0,
+          quantity: product.quantity || 0,
+          rating: product.rating || 0,
+        }));
       } catch (error) {
         console.error('Error calling API:', error);
       }
@@ -36,9 +48,6 @@ export default {
     return {
       products,
     };
-  },
-  components: {
-    Product,
   },
 };
 </script>

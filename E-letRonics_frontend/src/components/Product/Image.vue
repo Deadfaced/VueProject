@@ -5,14 +5,11 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-
 export default {
-  props: {
-    imageUrl: String,
-  },
+  props: ['imageUrl'],
 };
 </script>
+
 
 <style scoped>
 </style>
