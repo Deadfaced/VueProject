@@ -1,8 +1,8 @@
 <template>
   <div class="max-w-md mx-auto">
-    <div class="card card-side bg-base-100 shadow-xl p-4 mt-4 flex flex-col rounded">
+    <div class="bg-base-100 shadow-xl p-4 mt-4 flex flex-col">
       <figure>
-        <img src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Item" class="custom-img h-auto" />
+        <img src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Item" class="custom-img h-auto rounded-lg" />
       </figure>
       <div class="card-body">
         <h2 class="card-title text-sm">{{ Title }}</h2>
@@ -37,9 +37,5 @@ export default {
 </script>
 
 <style>
-  .custom-img {
-  width: 90%; 
-  height: auto; 
-  border-radius: 8px;
-}
+  
 </style>
