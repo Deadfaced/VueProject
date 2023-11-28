@@ -2,24 +2,27 @@
   <div class="flex justify-center items-center mx-auto">
     <div class="card glass">
       <ImageComponent v-if="item && item.image" :imageUrl="item.image">
-        <!-- Slot for Image content -->
+        <!-- image slot -->
       </ImageComponent>
       <div class="flex flex-col justify-between items-center w-full h-full p-4">
-        <NameComponent :name="item.name">
-          <!-- Slot for Name content -->
+        <NameComponent :name="item ? item.name : ''">
+          <!-- name slot -->
         </NameComponent>
 
-        <DescriptionComponent :description="item.description">
-          <!-- Slot for Description content -->
+        <DescriptionComponent :description="item ? item.description : ''">
+          <!-- description slot -->
         </DescriptionComponent>
 
+        <Price :price="item ? item.price : 0">
+          <!-- price slot -->
+        </Price>
+
+        <Quantity :quantity="item ? item.quantity : 0">
+          <!-- quantity slot -->
+        </Quantity>
+
         <div class="flex flex-col justify-between items-center w-full mt-4">
-          <router-link :to="{ name: 'Details', params: { id: item.id } }">
-            <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">
-              Read More
-            </button>
-          </router-link>
-          <Rating :rating="item.rating"></Rating>
+          <Rating :rating="item ? item.rating : 0"></Rating>
         </div>
       </div>
     </div>
@@ -28,22 +31,30 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { fetchData } from '../../Services/apiService.js';
-
 import ImageComponent from './Image.vue';
 import NameComponent from './Name.vue';
 import DescriptionComponent from './Description.vue';
+import Price from './Price.vue';
+import Quantity from './Quantity.vue';
 import Rating from './Rating.vue';
 
 export default {
   props: ['item'],
+  components: {
+    ImageComponent,
+    NameComponent,
+    DescriptionComponent,
+    Price,
+    Quantity,
+    Rating,
+  },
   setup(props) {
     const item = ref(props.item);
 
     onMounted(async () => {
       try {
         const data = await fetchData(`http://127.0.0.1:3333/products/${props.item.id}`);
-        
+
         item.value = {
           name: data.name,
           description: data.description,
@@ -61,12 +72,6 @@ export default {
     return {
       item,
     };
-  },
-  components: {
-    ImageComponent,
-    NameComponent,
-    DescriptionComponent,
-    Rating,
   },
 };
 </script>
