@@ -13,7 +13,7 @@ export const fetchData = async () => {
       imageUrl: imageResponse.request.responseURL,
     };
   } catch (error) {
-    console.error('Erro ao chamar a API:', error);
+    console.error('Error calling API:', error);
     throw error;
   }
 };

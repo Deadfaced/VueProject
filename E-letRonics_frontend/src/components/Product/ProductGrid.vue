@@ -7,12 +7,15 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div v-for="index in 8" :key="index">
           <div class="relative">
-            <Product>
+            <Product :item="sampleItem">
               <template v-slot:image>
+                <!-- Content for Image -->
               </template>
               <template v-slot:title>
+                <!-- Content for Title -->
               </template>
               <template v-slot:description>
+                <!-- Content for Description -->
               </template>
             </Product>
           </div>
@@ -27,7 +30,9 @@ import Product from './Product.vue';
 
 export default {
   setup() {
-    return {};
+    return {
+      sampleItem: { id: 1, title: 'Sample Title', description: 'Sample Description', imageUrl: 'https://sample-url.com/image.jpg' },
+    };
   },
   components: {
     Product,

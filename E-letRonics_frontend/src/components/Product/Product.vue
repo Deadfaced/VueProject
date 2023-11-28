@@ -1,11 +1,17 @@
 <template>
   <div class="flex justify-center items-center mx-auto">
     <div class="card glass">
-      <ImageComponent v-if="item && item.imageUrl" :imageUrl="item.imageUrl" />
-
+      <ImageComponent v-if="item && item.imageUrl" :imageUrl="item.imageUrl">
+        <!-- Slot for Image content -->
+      </ImageComponent>
       <div class="flex flex-col justify-between items-center w-full h-full p-4">
-        <TitleComponent :title="item.title" />
-        <DescriptionComponent :description="item.description" />
+        <TitleComponent :title="item.title">
+          <!-- Slot for Title content -->
+        </TitleComponent>
+
+        <DescriptionComponent :description="item.description">
+          <!-- Slot for Description content -->
+        </DescriptionComponent>
 
         <div class="flex flex-col justify-between items-center w-full mt-4">
           <router-link :to="{ name: 'productDetail', params: { id: item.id } }">
