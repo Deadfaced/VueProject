@@ -7,10 +7,10 @@ import APITests from './components/Product/APITests.vue';
 </script>
 
 <template>
-    <!-- <SideCart></SideCart> -->
+     <SideCart></SideCart> 
     <!-- <CardCart></CardCart> -->
     <!-- <Product></Product> -->
-    <APITests></APITests>
+    <!-- <APITests></APITests> -->
 </template>
 
 <style scoped></style>
