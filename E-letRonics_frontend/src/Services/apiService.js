@@ -1,17 +1,9 @@
 import axios from 'axios';
 
-export const fetchData = async () => {
+export const fetchData = async (url) => {
   try {
-    const [titleResponse, imageResponse] = await Promise.all([
-      axios.get('https://jsonplaceholder.typicode.com/posts/1'),// JSONPlaceholder API
-      axios.get('https://picsum.photos/200/300') // Lorem Picsum
-    ]);
-
-    return {
-      title: titleResponse.data.title,
-      description: titleResponse.data.body,
-      imageUrl: imageResponse.request.responseURL,
-    };
+    const response = await axios.get(url);
+    return response.data;
   } catch (error) {
     console.error('Error calling API:', error);
     throw error;

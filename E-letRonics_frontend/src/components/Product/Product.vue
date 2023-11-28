@@ -1,25 +1,25 @@
 <template>
   <div class="flex justify-center items-center mx-auto">
     <div class="card glass">
-      <ImageComponent v-if="item && item.imageUrl" :imageUrl="item.imageUrl">
+      <ImageComponent v-if="item && item.image" :imageUrl="item.image">
         <!-- Slot for Image content -->
       </ImageComponent>
       <div class="flex flex-col justify-between items-center w-full h-full p-4">
-        <TitleComponent :title="item.title">
-          <!-- Slot for Title content -->
-        </TitleComponent>
+        <NameComponent :name="item.name">
+          <!-- Slot for Name content -->
+        </NameComponent>
 
         <DescriptionComponent :description="item.description">
           <!-- Slot for Description content -->
         </DescriptionComponent>
 
         <div class="flex flex-col justify-between items-center w-full mt-4">
-          <router-link :to="{ name: 'productDetail', params: { id: item.id } }">
+          <router-link :to="{ name: 'Details', params: { id: item.id } }">
             <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">
               Read More
             </button>
           </router-link>
-          <Rating></Rating>
+          <Rating :rating="item.rating"></Rating>
         </div>
       </div>
     </div>
@@ -30,10 +30,10 @@
 import { ref, onMounted } from 'vue';
 import { fetchData } from '../../Services/apiService.js';
 
-import ImageComponent from './ProductImage.vue';
-import TitleComponent from './Title.vue';
-import DescriptionComponent from './ProductDescription.vue';
-import Rating from '../Rating.vue';
+import ImageComponent from './Image.vue';
+import NameComponent from './Name.vue';
+import DescriptionComponent from './Description.vue';
+import Rating from './Rating.vue';
 
 export default {
   props: ['item'],
@@ -42,13 +42,16 @@ export default {
 
     onMounted(async () => {
       try {
-        const data = await fetchData('https://jsonplaceholder.typicode.com/posts/1', 'https://picsum.photos/200/300');
+        const data = await fetchData(`http://127.0.0.1:3333/products/${props.item.id}`);
         
         item.value = {
-          title: data.title,
+          name: data.name,
           description: data.description,
-          imageUrl: data.imageUrl,
-          id: props.item.id,
+          image: data.image,
+          id: data.id,
+          price: data.price,
+          quantity: data.quantity,
+          rating: data.rating,
         };
       } catch (error) {
         console.error('Error calling API:', error);
@@ -61,7 +64,7 @@ export default {
   },
   components: {
     ImageComponent,
-    TitleComponent,
+    NameComponent,
     DescriptionComponent,
     Rating,
   },
