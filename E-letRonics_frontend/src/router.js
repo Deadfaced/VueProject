@@ -1,15 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ProductGrid from './components/Product/ProductGrid.vue';
-import ProductDetails from './components/Product/Details.vue';
+import HomePage from './pages/Home.vue';
 
 const routes = [
-  { path: '/', component: ProductGrid },
-  { path: '/product/:id', component: ProductDetails, props: true },
+  {
+    path: '/',
+    name: 'Home',
+    component: HomePage
+  },
+  // other routes...
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes
 });
 
 export default router;
