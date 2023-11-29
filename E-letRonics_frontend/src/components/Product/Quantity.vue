@@ -3,19 +3,8 @@
   </template>
   
   <script>
-  import { ref } from 'vue';
-  
   export default {
-    props: {
-      quantity: Number,
-    },
-    setup(props) {
-      const quantity = ref(props.quantity);
-  
-      return {
-        quantity,
-      };
-    },
+    props: ['quantity'],
   };
   </script>
   

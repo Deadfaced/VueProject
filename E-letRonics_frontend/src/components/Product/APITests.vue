@@ -1,49 +1,64 @@
 <template>
-    <div class="flex justify-center items-center mx-auto">
-      <div class="card glass">
-        <ImageComponent v-if="product && product.image" :imageUrl="product.image" />
-        <div class="flex flex-col justify-between items-center w-full h-full p-4">
-          <NameComponent :name="product ? `name: ${product.name}` : ''" />
-          <DescriptionComponent :description="product ? product.description : ''" />
-          <!-- <Price :price="product ? product.price : 0" /> -->
-          <Quantity :quantity="product ? product.quantity : 0" />
-          <Rating :rating="product ? product.rating : 0" />
-        </div>
-      </div>
+  <div class="card">
+    <div v-if="product && product.image" class="image-container">
+      <img :src="product.image" alt="Product Image" />
     </div>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue';
-  import ImageComponent from './Image.vue';
-  import NameComponent from './Name.vue';
-  import DescriptionComponent from './Description.vue';
-  import Price from './Price.vue';
-  import Quantity from './Quantity.vue';
-  import Rating from './Rating.vue';
-  import { fetchData } from '../../Services/apiService.js';
-  
-  const product = ref(null);
-  
-  onMounted(async () => {
-    try {
-      const data = await fetchData('http://127.0.0.1:3333/products/');
+    <div class="info-container">
+      <h2>{{ product ? product.name : 'No Name' }}</h2>
+      <p>{{ product ? product.description : 'No Description' }}</p>
+      <p>{{ product ? `Price: $${product.price.toFixed(2)}` : 'No Price' }}</p>
+      <p>{{ product ? `Quantity: ${product.quantity}` : 'No Quantity' }}</p>
+      <p>{{ product ? `Rating: ${product.rating}` : 'No Rating' }}</p>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import { fetchData } from '../../Services/apiService.js';
+
+const product = ref(null);
+
+onMounted(async () => {
+  try {
+    const data = await fetchData('http://127.0.0.1:3333/products');
+    if (data.length > 0) {
       product.value = data[0];
-    } catch (error) {
-      console.error('Error calling API:', error);
+    } else {
+      console.error('No product data available');
     }
-  });
-  console.log(product.description);
-  { product }
-  </script>
-  
-  <style scoped>
-  .card {
-    transition: all 0.3s ease-in-out;
+  } catch (error) {
+    console.error('Error calling API:', error);
   }
-  
-  .transition-transform {
-    transition: transform 0.5s ease-in-out;
-  }
-  </style>
-  
+});
+</script>
+
+<style scoped>
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container {
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-container {
+  margin-top: 16px;
+  text-align: center;
+}
+</style>

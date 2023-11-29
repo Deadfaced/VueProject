@@ -1,16 +1,15 @@
-<!-- Product.vue -->
 <template>
   <div class="flex justify-center items-center mx-auto">
-    <div class="card glass">
+      <div class="card glass">
       <ImageComponent v-if="item && item.image" :imageUrl="item.image">
         <!-- image slot -->
       </ImageComponent>
       <div class="flex flex-col justify-between items-center w-full h-full p-4">
-        <NameComponent :name="item ? item.name : ''">
+        <NameComponent :name="item ? item.name : 'Name Unavailable'">
           <!-- name slot -->
         </NameComponent>
 
-        <DescriptionComponent :description="item ? item.description : ''">
+        <DescriptionComponent :description="item ? item.description : 'Description Not Available'">
           <!-- description slot -->
         </DescriptionComponent>
 
@@ -21,9 +20,11 @@
         <Quantity :quantity="item ? item.quantity : 0">
           <!-- quantity slot -->
         </Quantity>
-
         <div class="flex flex-col justify-between items-center w-full mt-4">
-          <Rating :rating="item ? item.rating : 0"></Rating>
+            <router-link :to="{ name: 'productDetails', params: { id: item.id } }">
+              <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Read More</button>
+            </router-link>
+            <Rating :rating="item ? item.rating : 0"></Rating>
         </div>
       </div>
     </div>
@@ -31,7 +32,6 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
 import ImageComponent from './Image.vue';
 import NameComponent from './Name.vue';
 import DescriptionComponent from './Description.vue';
@@ -51,35 +51,7 @@ export default {
     Rating,
   },
   setup(props) {
-    const item = ref(props.item);
-
-    onMounted(async () => {
-      try {
-        const data = await fetchData('http://127.0.0.1:3333/products');
-
-        const product = data.find(product => product.id === props.item.id);
-
-        if (product) {
-          item.value = {
-            name: product.name,
-            description: product.description,
-            image: product.image,
-            id: product.id,
-            price: product.price,
-            quantity: product.quantity,
-            rating: product.rating,
-          };
-        } else {
-          console.error('Product not found');
-        }
-      } catch (error) {
-        console.error('Error calling API:', error);
-      }
-    });
-
-    return {
-      item,
-    };
+    // ...
   },
 };
 </script>
