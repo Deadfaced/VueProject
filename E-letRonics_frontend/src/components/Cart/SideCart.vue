@@ -33,7 +33,7 @@
   </template>
   
   <script>
-  import CardCart from './CardCart.vue';
+  import CardCart from './Cart/CardCart.vue';
   export default {
     components: { CardCart },
     setup() {
