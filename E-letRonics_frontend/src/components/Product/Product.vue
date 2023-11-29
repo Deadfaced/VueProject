@@ -21,9 +21,9 @@
           <!-- quantity slot -->
         </Quantity>
         <div class="flex flex-col justify-between items-center w-full mt-4">
-            <router-link :to="{ name: 'productDetails', params: { id: item.id } }">
-              <button class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Read More</button>
-            </router-link>
+          <router-link :to="{ name: 'Details', params: { id: item.id } }">
+            <button @click="redirectToDetails" class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Details</button>
+          </router-link>
             <Rating :rating="item ? item.rating : 0"></Rating>
         </div>
       </div>
@@ -49,6 +49,12 @@ export default {
     Price,
     Quantity,
     Rating,
+  },
+  methods: {
+    redirectToDetails() {
+    console.log('Redirecting to details', this.item.id);
+    this.$router.push({ name: 'Details', params: { id: this.item.id } });
+  }
   },
   setup(props) {
     // ...

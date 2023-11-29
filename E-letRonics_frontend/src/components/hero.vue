@@ -6,7 +6,7 @@
                 <h1 class="text-7xl font-bold ">Welcome to</h1>
                 <h1 class="mb-5 text-7xl font-bold ">E-letRonics</h1>
                 <p class="mb-5 text-2xl">The only tech shop you will ever need !</p>
-                <button class="btn btn-primary">Start Shopping</button>
+                <router-link to="/products" class="btn btn-primary">Start Shopping</router-link>
             </div>
         </div>
     </div>
