@@ -1,9 +1,6 @@
 <template>
-  <div class="max-w-md mx-auto">
-    <div class="bg-base-100 shadow-xl p-4 mt-4 flex flex-col">
-      <figure>
-        <img src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Item" class="custom-img h-auto rounded-lg" />
-      </figure>
+    <div class="bg-base-100 shadow-xl p-4 mt-4 max-w-xs">
+        <img src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Item" class="rounded-lg object-cover"/>
       <div class="card-body">
         <h2 class="card-title text-sm">{{ Title }}</h2>
         <h2 class="card-title text-sm">{{ Description }}</h2>
@@ -16,7 +13,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 
