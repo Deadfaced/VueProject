@@ -1,39 +1,24 @@
 <template>
-    <!-- <div class="card bg-base-100 shadow-xl max-w-xs border">
-      <img src="https://img.freepik.com/fotos-premium/fotografia-da-natureza-paisagem-lac_826551-4.jpg" class="object-cover"/>
-      <div class="card-body w-full">
-        <h2 class="card-title">New movie is released!</h2>
-        <p>Click the button to watch on Jetflix app.</p>
-        <div class="card-actions justify-end">
-          <button @click="decreaseQuantity" class="text-gray-500 px-2 py-1 border border-gray-300 focus:outline-none hover:bg-gray-100 transition duration-300">-</button>
-          <span class="text-lg font-medium">{{ quantity }}</span>
-          <button @click="increaseQuantity" class="text-gray-500 px-2 py-1 border border-gray-300 focus:outline-none hover:bg-gray-100 transition duration-300">+</button>
-          <button class="w-full rounded-lg border-2 bg-white px-4 py-2 font-medium text-gray-500">Delete</button>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="m-4 mx-auto max-w-screen-lg rounded-md border border-gray-100 text-gray-600 shadow-md">
+    <div class="m-4 mx-auto max-w-screen-lg rounded-md border-gray-100 text-gray-600 shadow-md">
       <div class="relative flex h-full flex-col text-gray-600 md:flex-row">
     <div class="mx-auto flex items-center px-5 pt-1 md:p-8">
-      <img class="block h-auto max-w-full rounded-md shadow-lg" src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Shop image" />
+      <img class="block h-auto max-w-sm rounded-md shadow-lg" src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Shop image" />
     </div>
     <div class="relative p-8 md:w-4/6"> 
       <div class="flex flex-col md:flex-row">
-        <h2 class="mb-2 text-2xl font-black">Title</h2>
+        <h2 class="mb-2 text-2xl font-black text-white">Title</h2>
       </div>
-      <p class="mt-3 font-sans text-base tracking-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos voluptate vero soluta voluptatum error non.</p>
+      <p class="mt-3 font-sans text-base tracking-normal text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos voluptate vero soluta voluptatum error non.</p>
       <div class="flex flex-col md:flex-row md:items-end">
-        <p class="mt-6 text-4xl font-black">50<sup class="align-super text-sm">99</sup></p>
+        <p class="mt-6 text-4xl text-white">50<sup class="align-super text-sm">99€</sup></p>
       </div>
       <div class="mt-8 flex flex-col sm:flex-row">
-        <button class="mr-2 mb-4 flex cursor-pointer items-center justify-center rounded-md bg-emerald-400 py-2 px-8 text-center text-white transition duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          Buy now
+        <button @click="decreaseQuantity" class="mr-4 mb-4 flex cursor-pointer items-center justify-center rounded-md border py-2 px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-rose-500 hover:text-white">-</button>
+        <h1 class="text-4xl text-white">{{ quantity }}</h1>
+        <button @click="increaseQuantity" class="mr-4 ml-4 mb-4 flex cursor-pointer items-center justify-center rounded-md border py-2 px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-green-500 hover:text-white">+</button>
+        <button class="ml-auto mb-4 cursor-pointer rounded-md border py-2 px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-rose-500 hover:text-white ">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path fill="#ffffff" d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>        
         </button>
-        <button class="mr-2 mb-4 flex cursor-pointer items-center justify-center rounded-md border py-2 px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-rose-500 hover:text-white">Preview</button>
       </div>
     </div>
   </div>
