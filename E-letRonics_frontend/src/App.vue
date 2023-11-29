@@ -5,9 +5,7 @@ import SideCart from './components/SideCart.vue';
 </script>
 
 <template>
-    <SideCart></SideCart>
-    <!-- <CardCart></CardCart> -->
-    <!-- <Product></Product> -->
+ 
 </template>
 
 <style scoped></style>
