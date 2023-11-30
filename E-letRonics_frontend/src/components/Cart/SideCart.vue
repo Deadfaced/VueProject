@@ -1,7 +1,6 @@
 <template>
   <div class="fixed top-0 right-0 bottom-0 w-1/4 shadow-right z-50 bg-base-200 text-base-content flex flex-col">
     <button
-      @click="closeSidebar"
       class="ml-auto mt-2 mr-6 text-white hover:text-gray-300 focus:outline-none"
     >
       <svg
