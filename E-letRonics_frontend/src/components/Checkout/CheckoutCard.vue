@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-4 rounded-md border-gray-100 text-gray-600 shadow-md">
+    <div class="mx-4 rounded-md border-gray-100 text-gray-600 shadow-xl">
       <div class="relative flex h-full flex-col text-gray-600 md:flex-row">
     <div class="mx-auto flex items-center px-5 pt-1 md:p-8">
         <img class="block h-auto max-h-48 rounded-md shadow-lg" src="https://pplware.sapo.pt/wp-content/uploads/2022/12/GeForce-GTX-1650.jpg" alt="Shop image" />
