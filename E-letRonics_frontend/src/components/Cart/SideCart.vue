@@ -1,7 +1,7 @@
 <template>
-  <div class="fixed top-0 right-0 bottom-0 w-1/4 shadow-right z-50 bg-base-200 text-base-content flex flex-col">
+  <div class="fixed top-0 right-0 bottom-0 shadow-right z-50 bg-base-200 text-base-content flex flex-col ">
     <button
-      class="ml-auto mt-2 mr-6 text-white hover:text-gray-300 focus:outline-none"
+      class="ml-auto mr-2 text-white hover:text-gray-300"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -17,8 +17,8 @@
         <path d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
-    <div class="p-4 overflow-y-auto">
-      <div class="bg-base-200 sticky top-0">
+    <div class="p-4 overflow-y-auto no-scrollbar">
+      <div class="sticky top-0">
         <h2 class="text-lg font-semibold mb-4 flex items-center justify-center">
         <span class="highlight">Cart</span>
         <svg
@@ -37,7 +37,7 @@
           ></path>
         </svg>
       </h2>
-        <h3 class="text-sm mb-4 flex items-center justify-center blinking sticky top-7 ">Free shipping over 50€</h3>
+        <h3 class="text-sm mb-4 flex items-center justify-center sticky top-7 animate-pulse">Free shipping over 50€</h3>
       </div>
       <card-cart></card-cart>
       <card-cart></card-cart>
@@ -62,23 +62,5 @@ export default {
 </script>
 
 <style scoped>
-.sidebar:hover h3 {
-  opacity: 0.7;
-}
 
-@keyframes blinking {
-  0% { opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { opacity: 0.7; }
-}
-
-.blinking {
-  animation: blinking 1.5s infinite; 
-}
-
-@media screen and (max-width: 640px) {
-  .sidebar {
-    width: 100%;
-  }
-}
 </style>
