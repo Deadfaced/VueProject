@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white min-h-screen flex items-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1530362502708-d02c8f093039?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+  <div class="text-white min-h-screen flex items-center">
     <div class="max-w-lg w-1/2 p-8 rounded-md">
       <h1 class="text-4xl md:text-6xl font-semibold leading-normal mb-6 neon-bounce-text">E-letRonics</h1>
       <p class="mb-4">
@@ -50,24 +50,7 @@
   </script>
   
   <style scoped>
-  @keyframes neonBounceEffect {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-      text-shadow: 0 0 2px #00ff00, 0 0 4px #00ff00, 0 0 6px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00;
-    }
-    40% {
-      transform: translateY(-5px);
-      text-shadow: 0 0 4px #00ff00, 0 0 6px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00, 0 0 12px #00ff00;
-    }
-    60% {
-      transform: translateY(-2px);
-      text-shadow: 0 0 6px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00, 0 0 12px #00ff00, 0 0 14px #00ff00;
-    }
-  }
   
-  .neon-bounce-text {
-    animation: neonBounceEffect 2.5s ease-in-out infinite;
-  }
 </style>
 
 
