@@ -20,14 +20,12 @@
             <Quantity v-if="item && item.quantity < 5" :quantity="item ? item.quantity : 0"></Quantity>
         </div>
         <Rating :rating="item ? item.rating : 0"></Rating>
-        <div class="flex items-center justify-between">
-          <button class="px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 rounded">
-            Details
-          </button>
-          <button class="px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 rounded">
-            Add to Cart
-          </button>
-        </div>
+          <div class="flex items-center justify-between action-container">
+            <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }">
+              <button class="action-button">Details</button>
+            </router-link>
+            <button class="action-button">Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>

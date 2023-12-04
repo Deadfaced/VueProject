@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './pages/Home.vue';
-import ProductGrid from './components/Product/ProductGrid.vue';
+import ProductDetails from './pages/ProductDetails.vue';
 
 
 const routes = [
@@ -11,9 +11,9 @@ const routes = [
   },
 
   {
-    path: '/products',
-    name: 'Products',
-    component: ProductGrid
+    path: '/product/:id',
+    name: 'ProductDetails',
+    component: ProductDetails,
   },
 ];
 
