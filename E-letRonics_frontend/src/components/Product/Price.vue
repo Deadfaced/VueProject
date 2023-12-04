@@ -1,5 +1,5 @@
 <template>
-  <p>{{ formattedPrice }}</p>
+  <p class="text-gray-100">{{ formattedPrice }}</p>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   },
   setup(props) {
     const formattedPrice = computed(() => {
-      return props.price.toFixed(2);
+      return props.price.toFixed(2) + " €";
     });
 
     return {

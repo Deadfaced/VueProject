@@ -1,5 +1,5 @@
 <template>
-    <p class="quantity">Quantity: {{ quantity }}</p>
+    <p class="quantity text-red-700">Only {{ quantity }} left</p>
   </template>
   
   <script>

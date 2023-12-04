@@ -1,34 +1,37 @@
 <template>
   <div class="flex justify-center items-center mx-auto">
-      <div class="card glass">
-      <ImageComponent v-if="item && item.image" :imageUrl="item.image">
-        <!-- image slot -->
+      <div class="card glass w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <ImageComponent :imageUrl="item && item.image ? item.image : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'">
       </ImageComponent>
-      <div class="flex flex-col justify-between items-center w-full h-full p-4">
-        <NameComponent :name="item ? item.name : 'Name Unavailable'">
-          <!-- name slot -->
+              <div class="px-5 py-3">
+                <NameComponent :name="item ? item.name : 'Name is not available'">
         </NameComponent>
-
-        <DescriptionComponent :description="item ? item.description : 'Description Not Available'">
-          <!-- description slot -->
+          <div class="flex items-center mt-2.5 mb-5">
+            <div class="flex items-center space-x-1 rtl:space-x-reverse ">
+              <DescriptionComponent :description="item ? item.description : 'Description is not Available'">
         </DescriptionComponent>
-
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <p>  
         <Price :price="item ? item.price : 0">
-          <!-- price slot -->
         </Price>
-
-        <Quantity :quantity="item ? item.quantity : 0">
-          <!-- quantity slot -->
-        </Quantity>
-        <div class="flex flex-col justify-between items-center w-full mt-4">
-          <!-- <router-link :to="{ name: 'Details', params: { id: item.id } }">
-            <button @click="redirectToDetails" class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Details</button>
-          </router-link> -->
-            <Rating :rating="item ? item.rating : 0"></Rating>
+      </p>
+            <Quantity v-if="item && item.quantity < 5" :quantity="item ? item.quantity : 0"></Quantity>
+        </div>
+        <Rating :rating="item ? item.rating : 0"></Rating>
+        <div class="flex items-center justify-between">
+          <button class="px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 rounded">
+            Details
+          </button>
+          <button class="px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 rounded">
+            Add to Cart
+          </button>
+        </div>
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>

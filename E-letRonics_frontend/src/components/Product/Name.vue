@@ -1,5 +1,5 @@
 <template>
-  <h2 :class="{ 'long-text': isLongText }" class="m-0 p-0 text-2xl font-bold text-center">
+  <h2 :class="{ 'long-text': isLongText }" class="m-0 p-0 text-2xl font-bold text-center text-gray-400">
     {{ shortenedName }}
   </h2>
 </template>

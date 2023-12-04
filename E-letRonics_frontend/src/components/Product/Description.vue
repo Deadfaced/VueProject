@@ -1,5 +1,5 @@
 <template>
-  <p :class="{ 'long-text': isLongText }">
+  <p :class="{ 'long-text': isLongText }" class="text-gray-400">
     {{ shortenedDescription }}
   </p>
 </template>
@@ -9,10 +9,10 @@ export default {
   props: ['description'],
   computed: {
     isLongText() {
-      return this.description.length > 20;
+      return this.description.length > 30;
     },
     shortenedDescription() {
-      return this.isLongText ? this.description.slice(0, 20) + '...' : this.description;
+      return this.isLongText ? this.description.slice(0, 30) + '...' : this.description;
     },
   },
 };
