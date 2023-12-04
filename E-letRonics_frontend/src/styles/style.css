@@ -16,3 +16,23 @@
       }
     }
   }
+
+   /* AboutUs page */
+  @keyframes neonBounceEffect {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+      text-shadow: 0 0 2px #00ff00, 0 0 4px #00ff00, 0 0 6px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00;
+    }
+    40% {
+      transform: translateY(-5px);
+      text-shadow: 0 0 4px #00ff00, 0 0 6px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00, 0 0 12px #00ff00;
+    }
+    60% {
+      transform: translateY(-2px);
+      text-shadow: 0 0 6px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00, 0 0 12px #00ff00, 0 0 14px #00ff00;
+    }
+  }
+  
+  .neon-bounce-text {
+    animation: neonBounceEffect 2.5s ease-in-out infinite;
+  }
