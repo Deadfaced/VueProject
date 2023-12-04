@@ -21,9 +21,9 @@
           <!-- quantity slot -->
         </Quantity>
         <div class="flex flex-col justify-between items-center w-full mt-4">
-          <router-link :to="{ name: 'Details', params: { id: item.id } }">
+          <!-- <router-link :to="{ name: 'Details', params: { id: item.id } }">
             <button @click="redirectToDetails" class="w-full py-2 px-4 rounded-lg focus:outline-none cursor-pointer bg-gray-600 hover:bg-gray-400 text-white font-semibold mb-2">Details</button>
-          </router-link>
+          </router-link> -->
             <Rating :rating="item ? item.rating : 0"></Rating>
         </div>
       </div>
@@ -57,7 +57,6 @@ export default {
   }
   },
   setup(props) {
-    // ...
   },
 };
 </script>

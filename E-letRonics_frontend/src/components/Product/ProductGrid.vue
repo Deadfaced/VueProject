@@ -4,7 +4,7 @@
       <div class="flex flex-col text-center w-full mb-20">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-100">Products</h1>
       </div>
-      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div v-for="product in products" :key="product.id">
           <div class="relative">
             <Product :item="product"></Product>
@@ -33,6 +33,7 @@ export default {
         // Default values
         products.value = data.map(product => ({
           name: product.name || 'Name Unavailable',
+          description: product.description || 'Description Unavailable',
           image: product.image || 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png',
           id: product.id,
           price: product.price || 0,
