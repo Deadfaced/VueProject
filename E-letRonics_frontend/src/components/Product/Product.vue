@@ -22,8 +22,9 @@
         <Rating :rating="item ? item.rating : 0"></Rating>
           <div class="flex items-center justify-between action-container">
             <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }">
-              <button class="action-button">Details</button>
+              Details
             </router-link>
+
             <button class="action-button">Add to Cart</button>
           </div>
         </div>

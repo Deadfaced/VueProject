@@ -1,9 +1,8 @@
 <script setup>
-import ProductGrid from './components/Product/ProductGrid.vue';
 </script>
 
 <template>
-  <ProductGrid></ProductGrid>
+    <router-view></router-view>
 </template>
 
 <style scoped>

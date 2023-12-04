@@ -2,7 +2,7 @@
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-100">Products</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-700">Products</h1>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div v-for="product in products" :key="product.id">
