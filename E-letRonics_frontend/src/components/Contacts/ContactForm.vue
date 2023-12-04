@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-8">
     <h2 class="text-2xl font-semibold mb-4">Contact Us</h2>
     <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto">
       <div class="mb-4">
@@ -11,7 +11,7 @@
           type="text"
           id="name"
           name="name"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="input-field"
           placeholder="Your Name"
           required
         />
@@ -25,7 +25,7 @@
           type="email"
           id="email"
           name="email"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="input-field"
           placeholder="Your Email"
           required
         />
@@ -39,18 +39,13 @@
           id="message"
           name="message"
           rows="4"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="input-field"
           placeholder="Your Message"
           required
         ></textarea>
       </div>
       <div class="flex items-center justify-end">
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Send
-        </button>
+        <button class="submit-button width-" type="submit">Send</button>
       </div>
     </form>
   </div>
@@ -69,11 +64,41 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$emit('form-submitted', this.formData);
+      if (this.validateForm()) {
+        this.$emit('form-submitted', this.formData);
+        this.showAlert();
+      }
+    },
+    validateForm() {
+      if (!this.formData.name || !this.formData.email || !this.formData.message) {
+        alert('Please fill in all fields.');
+        return false;
+      }
+      return true;
+    },
+    showAlert() {
+      alert('Form submitted successfully!\n\nName: ' + this.formData.name + '\nEmail: ' + this.formData.email + '\nMessage: ' + this.formData.message);
     },
   },
 };
 </script>
 
 <style scoped>
+.input-field {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 </style>
