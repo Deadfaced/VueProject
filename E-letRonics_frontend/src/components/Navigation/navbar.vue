@@ -1,5 +1,12 @@
 <script setup>
+import { ref } from 'vue';
+import SideCart from '../Cart/SideCart.vue';
 
+const showSideCart = ref(false);
+
+function toggleSideCart() {
+    showSideCart.value = !showSideCart.value;
+};
 </script>
 
 <template>
@@ -11,7 +18,7 @@
         </div>
         <div class="flex-none">
             <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle">
+                <label tabindex="0" class="btn btn-ghost btn-circle" @click="toggleSideCart">
                     <div class="indicator">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -23,6 +30,7 @@
                 </label>
             </div>
         </div>
+        <SideCart v-if="showSideCart" @close="toggleSideCart" />
     </div>
 </template>
 
