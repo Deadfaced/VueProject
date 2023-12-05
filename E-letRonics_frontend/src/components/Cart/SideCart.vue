@@ -26,8 +26,8 @@ export default {
         <path d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
-    <div class="p-4 overflow-y-auto no-scrollbar">
-      <div class="sticky top-0">
+    <div class="pr-4 pb-4 pl-4 overflow-y-auto no-scrollbar">
+      <div class="sticky top-0 bg-base-200">
         <h2 class="text-lg font-semibold mb-4 flex items-center justify-center">
           <span class="highlight">Cart</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="#ff9900" stroke="currentColor" width="25" height="25"
@@ -37,19 +37,18 @@ export default {
             </path>
           </svg>
         </h2>
-        <h3 class="text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping</h3>
+        <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping</h3>
       </div>
       <card-cart></card-cart>
       <card-cart></card-cart>
       <card-cart></card-cart>
       <card-cart></card-cart>
     </div>
-    <div class="flex justify-end mt-auto mr-8 py-2 space-x-2">
+    <div class=" mt-auto py-2 space-x-2">
       <router-link to="/Checkout"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 md:mb-0 md:me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Checkout</router-link>
       <button
-        class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 md:mb-0 md:me-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit
-        Cart</button>
+        class=" focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 md:mb-0 md:me-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit Cart</button>
     </div>
   </div>
 </template>
