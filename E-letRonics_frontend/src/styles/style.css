@@ -42,22 +42,6 @@
 
    /* AboutUs Background */
 
-   *{
-    margin: o;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.body{
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:linear-gradient(to bottom, #000000 0%, #282369 100%);
-}
-
 .galaxy{
     width: 100%;
     height: 100vh;

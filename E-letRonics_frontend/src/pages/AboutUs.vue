@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white min-h-screen flex flex-col items-center body">
+  <div class="min-h-screen flex flex-col items-center bg-gradient-to-b from-black via-transparent to-indigo-900 text-white">
     <div class="galaxy">
             <div class="stars1"></div>
             <div class="stars2"></div>
