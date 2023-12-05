@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { EventBus } from './event-bus.js';
 
 import HomePage from './pages/Home.vue';
-import ProductGrid from './components/Product/ProductGrid.vue';
+import Shop from './pages/Shop.vue';
 import ProductDetails from './pages/ProductDetails.vue';
 import AboutUs from './pages/AboutUs.vue';
 import Checkout from './pages/Checkout.vue';
@@ -33,14 +33,14 @@ const routes = [
     props: true,
   },
   {
-    path: '/products',
-    name: 'products',
-    component: ProductGrid,
+    path: '/Shop',
+    name: 'Shop',
+    component: Shop,
   },
   {
     path: '/testClaudio',
     name: 'testClaudio',
-    component: () => import('./components/Contacts/ContactPage.vue'),
+    component: () => import(''),
   },
   {
     path: '/testLazera',

@@ -6,7 +6,7 @@
           Enhance connectivity and facilitate access to innovation, offering electronic products of exceptional quality that enrich people's lives, promote efficiency and inspire technological evolution, always focusing on sustainability and customer satisfaction.
         </p>
       </div>
-      <img src="./target.png" alt="Target Image" class="max-h-28 mx-auto"/>
+      <img src="../../assets/images/target.png" alt="Target Image" class="max-h-28 mx-auto"/>
     </div>
   </template>
   

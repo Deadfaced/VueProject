@@ -8,10 +8,10 @@
 </template>
   
 <script>
-import Hero from '../components/Hero.vue';
-import GridGallery from '../components/GridGallery.vue';
-import TestimonialCard from '../components/TestimonialCard.vue';
-import ContactPage from '../components/Contacts/ContactPage.vue';
+import Hero from '../components/Home/Hero.vue';
+import GridGallery from '../components/Home/GridGallery.vue';
+import TestimonialCard from '../components/Home/TestimonialCard.vue';
+import ContactPage from '../components/Home/Contacts/ContactPage.vue';
 
 
 export default {

@@ -6,7 +6,7 @@
           <p class="text-sm md:text-base">. Unquestionable Quality: We are committed to excellence and durability in each product.</p>
           <p class="text-sm md:text-base">. Customer First: We prioritize customer needs to ensure complete satisfaction.</p>
         </div>
-        <img src="./value.png" alt="Values Image" class="max-h-28 mx-auto"/>     
+        <img src="../../assets/images/value.png" alt="Values Image" class="max-h-28 mx-auto"/>     
     </div>
 </template>
 
