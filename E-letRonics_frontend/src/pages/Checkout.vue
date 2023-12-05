@@ -7,7 +7,7 @@
           <CheckoutCard></CheckoutCard>
         </div>
         <div class="flex justify-between mt-4 mb-8">
-          <router-link to="/Home" class="bg-gray-700 text-white px-4 py-2 rounded-md ml-4">Back</router-link>
+          <router-link to="/" class="bg-gray-700 text-white px-4 py-2 rounded-md ml-4">Back</router-link>
           <button class="bg-gray-700 text-white px-4 py-2 rounded-md mr-4">Empty Cart</button>
         </div>
       </div>
