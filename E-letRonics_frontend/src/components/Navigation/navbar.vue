@@ -4,9 +4,12 @@ import SideCart from '../Cart/SideCart.vue';
 
 const showSideCart = ref(false);
 
+
 function toggleSideCart() {
     showSideCart.value = !showSideCart.value;
+
 };
+
 </script>
 
 <template>

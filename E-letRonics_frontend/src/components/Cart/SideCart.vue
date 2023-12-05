@@ -4,14 +4,40 @@ import { EventBus } from '../../event-bus.js';
 
 export default {
   components: { CardCart },
+  data() {
+    return {
+      shoppingCart: [{}],
+    };
+  },
   setup() {
     return {};
   },
-  mounted() {
+  async mounted() {
+      console.log('ur mom gae');
+      const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+      this.shoppingCart = [];
+      cartList.forEach(async element => {
+        const response = await fetch(`http://127.0.0.1:3333/products/${element.id}`);
+        const data = await response.json();
+        this.shoppingCart.push({
+          id: element.id,
+          image: data.image,
+          name: data.name,
+          cartQty: element.qty,
+          price: data.price,
+          availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
+          totalPrice: data.price * element.qty,
+        });
+        console.log(this.shoppingCart);
+      });
+      
     EventBus.on('close-sidecart', () => {
       this.$emit('close');
+      
     });
+    
   },
+  
   beforeUnmount() {
     EventBus.off('close-sidecart');
   },
@@ -39,10 +65,15 @@ export default {
         </h2>
         <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping</h3>
       </div>
+      <!-- <card-cart></card-cart>
       <card-cart></card-cart>
       <card-cart></card-cart>
-      <card-cart></card-cart>
-      <card-cart></card-cart>
+      <card-cart></card-cart> -->
+      <ul>
+        <li>
+          <card-cart v-for="item in shoppingCart" :key="item.id" :item="item"></card-cart>
+        </li>
+      </ul>
     </div>
     <div class=" mt-auto py-2 space-x-2">
       <router-link to="/Checkout"

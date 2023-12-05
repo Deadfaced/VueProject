@@ -30,11 +30,13 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js';
+
 export default {
   data() {
     return {
       quantity: 1,
-      product: null,
+      product: Object,
     };
   },
   methods: {
@@ -47,6 +49,18 @@ export default {
       }
     },
     addToCart() {
+      
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      let found = cart.find(el => el.id === this.product.id);
+      
+      if (found) {
+        found.qty += this.quantity;
+      } else {
+        cart.push({ id: this.product.id, qty: this.quantity });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
     },
     async fetchProductDetails() {
       try {
