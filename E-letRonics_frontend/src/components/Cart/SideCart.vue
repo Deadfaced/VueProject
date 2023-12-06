@@ -4,6 +4,7 @@ import { EventBus } from '../../event-bus.js';
 
 export default {
   components: { CardCart },
+  props: ['shoppingCart'],
   data() {
     return {
       shoppingCart: [{}],
@@ -13,7 +14,6 @@ export default {
     return {};
   },
   async mounted() {
-      console.log('ur mom gae');
       const cartList = JSON.parse(localStorage.getItem('cart')) || [];
       this.shoppingCart = [];
       cartList.forEach(async element => {
@@ -24,9 +24,9 @@ export default {
           image: data.image,
           name: data.name,
           cartQty: element.qty,
-          price: data.price,
+          price: data.price + "€",
           availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
-          totalPrice: data.price * element.qty,
+          totalPrice: (data.price * element.qty).toFixed(2) + "€",
         });
         console.log(this.shoppingCart);
       });
@@ -71,7 +71,7 @@ export default {
       <card-cart></card-cart> -->
       <ul>
         <li>
-          <card-cart v-for="item in shoppingCart" :key="item.id" :item="item"></card-cart>
+          <card-cart v-for="item in shoppingCart" :key="item.id" :image="item.image" :name="item.name" :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :total-price="item.totalPrice" :item="item"></card-cart>
         </li>
       </ul>
     </div>
