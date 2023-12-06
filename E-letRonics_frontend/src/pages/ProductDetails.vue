@@ -1,10 +1,10 @@
 <template>
   <div class="product-details-container">
+    <Success />
     <div class="product-details-content" v-if="product">
       <div class="product-image-container">
         <img :src="product.image || 'https://example.com/placeholder.jpg'" alt="Product Image" class="product-image">
       </div>
-
       <div class="product-info">
         <h2 class="product-name">{{ product.name }}</h2>
         <p class="product-description">{{ product.description }}</p>
@@ -30,50 +30,63 @@
 </template>
 
 <script>
+import Success from '../components/Toasts/Success.vue';
+import EventBus from '../event-bus.js';
 export default {
-  data() {
-    return {
-      quantity: 1,
-      product: Object,
-    };
-  },
-  methods: {
-    increaseQuantity() {
-      this.quantity += 1;
+    data() {
+        return {
+            quantity: 1,
+            product: Object,
+        };
     },
-    decreaseQuantity() {
-      if (this.quantity > 1) {
-        this.quantity -= 1;
-      }
+    methods: {
+        increaseQuantity() {
+            this.quantity += 1;
+        },
+        decreaseQuantity() {
+            if (this.quantity > 1) {
+                this.quantity -= 1;
+            }
+        },
+        addToCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let found = cart.find(el => el.id === this.product.id);
+            if (found) {
+                found.qty += this.quantity;
+            }
+            else {
+                cart.push({ id: this.product.id, qty: this.quantity });
+            }
+            console.log('Emitting product-added-to-cart event');
+            EventBus.emit('product-added-to-cart', {
+                product: this.product,
+                quantity: this.quantity
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+        },
+        showToast(data) {
+            const message = `Added ${data.quantity} units of "${data.product.name}" to cart!`;
+            console.log('Received product-added-to-cart event, showing toast:', message);
+            toast.success(message, this.getToastOptions());
+        },
+        async fetchProductDetails() {
+            try {
+                const productId = this.$route.params.id;
+                const response = await fetch(`http://127.0.0.1:3333/products/${productId}`);
+                const data = await response.json();
+                this.product = data;
+            }
+            catch (error) {
+                console.error('Error calling API:', error);
+            }
+        },
     },
-    addToCart() {
-      
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
-      let found = cart.find(el => el.id === this.product.id);
-      
-      if (found) {
-        found.qty += this.quantity;
-      } else {
-        cart.push({ id: this.product.id, qty: this.quantity });
-      }
-      
-      localStorage.setItem('cart', JSON.stringify(cart));
+    created() {
+        this.fetchProductDetails();
     },
-    async fetchProductDetails() {
-      try {
-        const productId = this.$route.params.id;
-        const response = await fetch(`http://127.0.0.1:3333/products/${productId}`);
-        const data = await response.json();
-        this.product = data;
-      } catch (error) {
-        console.error('Erro ao buscar detalhes do produto:', error);
-      }
-    },
-  },
-  created() {
-    this.fetchProductDetails();
-  },
+    components: { 
+      Success 
+    }
 };
 </script>
 

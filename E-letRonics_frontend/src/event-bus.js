@@ -1,4 +1,6 @@
+import { ref } from 'vue';
 
+const events = ref({});
 export const EventBus = {
     events: {},
     emit(event, data) {

@@ -1,5 +1,4 @@
 <template>
-    <div></div>
 </template>
 
 <script>
@@ -8,12 +7,9 @@ import 'vue3-toastify/dist/index.css';
 import { EventBus } from '../../event-bus.js';
 
 export default {
-  name: 'Success',
   methods: {
-    showToast(data) {
-      const message = `Added ${data.quantity} units of "${data.product.name}" to cart!`;
-      console.log('Show Toast:', message);
-      toast.success(message, this.getToastOptions());
+    showToast(message) {
+      toast.warn(message, this.getToastOptions());
     },
     getToastOptions() {
       return {
@@ -25,6 +21,7 @@ export default {
         draggablePercent: 600,
         showCloseButtonOnHover: false,
         hideProgressBar: false,
+        closeButton: 'button',
         icon: true,
         rtl: false,
         toastClassName: 'dark-toast',
@@ -34,10 +31,10 @@ export default {
     },
   },
   created() {
-    EventBus.on('product-added-to-cart', this.showToast);
+    EventBus.$on('show-warning-toast', this.showToast);
   },
   beforeUnmount() {
-    EventBus.off('product-added-to-cart', this.showToast);
+    EventBus.$off('show-warning-toast', this.showToast);
   },
 };
 </script>

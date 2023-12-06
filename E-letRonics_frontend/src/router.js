@@ -37,26 +37,6 @@ const routes = [
     name: 'Shop',
     component: Shop,
   },
-  {
-    path: '/testClaudio',
-    name: 'testClaudio',
-    component: () => import(''),
-  },
-  {
-    path: '/testLazera',
-    name: 'testLazera',
-    component: () => import(''),
-  },
-  {
-    path: '/testDaniel',
-    name: 'testDaniel',
-    component: () => import(''),
-  },
-  {
-    path: '/testBernardo',
-    name: 'testBernardo',
-    component: () => import(''),
-  },
 ];
 
 const router = createRouter({
