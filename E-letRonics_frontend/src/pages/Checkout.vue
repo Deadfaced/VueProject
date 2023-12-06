@@ -3,8 +3,8 @@
     <h2 class="text-4xl text-white mt-8 ml-14">My Cart</h2>
     <div class="flex justify-center items-start h-screen space-x-4 mt-4">
       <div class="flex flex-col">
-        <div v-for="index in 3" :key="index" class="mb-4">
-          <CheckoutCard></CheckoutCard>
+        <div v-for="item in shoppingCart" :key="item.id" class="mb-4">
+          <CheckoutCard :id="item.id" :image="item.image" :name="item.name" :description="item.description" :price="item.price" :cartQty="item.cartQty" :total-price="item.totalPrice" :item="item"></CheckoutCard>
         </div>
         <div class="flex justify-between mt-4 mb-8">
           <router-link to="/" class="bg-gray-700 text-white px-4 py-2 rounded-md ml-4">Back</router-link>
@@ -25,9 +25,27 @@ export default {
   components: { SummaryCard, CheckoutCard},
   data() {
     return {
-      
-        }
-    }
+      shoppingCart: [{}],
+      }
+    },
+    async mounted() {
+      const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+      this.shoppingCart = [];
+      cartList.forEach(async element => {
+        const response = await fetch(`http://127.0.0.1:3333/products/${element.id}`);
+        const data = await response.json();
+        this.shoppingCart.push({
+          id: element.id,
+          image: data.image,
+          name: data.name,
+          description: data.description,
+          price: data.price + "€",
+          cartQty: element.qty,
+          totalPrice: (data.price * element.qty).toFixed(2) + "€",
+        });
+      });
+    },
+    
 };
 
 </script>

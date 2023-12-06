@@ -28,7 +28,6 @@ export default {
           availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
           totalPrice: (data.price * element.qty).toFixed(2) + "€",
         });
-        console.log(this.shoppingCart);
       });
       
     EventBus.on('close-sidecart', () => {
@@ -65,10 +64,6 @@ export default {
         </h2>
         <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping</h3>
       </div>
-      <!-- <card-cart></card-cart>
-      <card-cart></card-cart>
-      <card-cart></card-cart>
-      <card-cart></card-cart> -->
       <ul>
         <li>
           <card-cart v-for="item in shoppingCart" :key="item.id" :image="item.image" :name="item.name" :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :total-price="item.totalPrice" :item="item"></card-cart>
@@ -76,7 +71,7 @@ export default {
       </ul>
     </div>
     <div class=" mt-auto py-2 space-x-2">
-      <router-link to="/Checkout"
+      <router-link :to="{ name: 'Checkout', params: { shoppingCart: shoppingCart } }"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 md:mb-0 md:me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Checkout</router-link>
       <button
         class=" focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 md:mb-0 md:me-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit Cart</button>

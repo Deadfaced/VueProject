@@ -8,18 +8,57 @@
 
 <script>
 export default {
+  props: ['qty', 'id'],
   data() {
     return {
-      quantity: 1, 
+      quantity: this.qty, 
     };
   },
   methods: {
     increaseQuantity() {
-      this.quantity++;
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      let found = cart.find(el => el.id === this.id);
+      
+      if (found) {
+        this.quantity++;
+        found.qty++;
+      } else {
+        alert('Produto não encontrado');
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
     },
     decreaseQuantity() {
       if (this.quantity > 1) {
-        this.quantity--;
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+        let found = cart.find(el => el.id === this.id);
+        
+        if (found) {
+          this.quantity--;
+          found.qty--;
+          
+          console.log(cart);
+        } else {
+          console.log(this.id)
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+      else if(this.quantity == 1){
+        console.log("entrou")
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+        let found = cart.find(el => el.id === this.id);
+        
+        if (found) {
+          cart = cart.filter(item => item.id !== this.id);
+          this.quantity--;
+          location.reload();
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
       }
     },
   },
