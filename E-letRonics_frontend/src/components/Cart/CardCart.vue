@@ -7,8 +7,7 @@
         <h2 class="card-title text-sm">Unit Cost: {{ price }}</h2>
         <h2 class="card-title text-sm">{{ availability }}</h2>
         <h2 class="card-title text-sm">Total: {{ totalPrice }}</h2>
-        <div class="card-actions justify-end">
-        </div>
+        <Counter></Counter>
       </div>
     </div>
 </template>
@@ -17,6 +16,7 @@
   
 
 <script>
+import Counter from '../Checkout/Counter.vue';
 export default {
     props: ['image', 'name', 'cartQty', 'price', 'availability', 'totalPrice'],
     data() {
@@ -24,6 +24,9 @@ export default {
             
         };
     },
+    components: {
+      Counter,
+    }
 }
 </script>
 
