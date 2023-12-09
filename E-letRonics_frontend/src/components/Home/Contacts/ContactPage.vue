@@ -2,7 +2,7 @@
   <div class="container mx-auto my-8">
     <div class="flex flex-wrap gap-8">
       <div class="flex-1">
-        <ContactForm @form-submitted="handleFormSubmission"></ContactForm>
+        <ContactForm></ContactForm>
       </div>
       <div class="flex-1">
         <ContactInformation></ContactInformation>
@@ -18,11 +18,7 @@ import ContactInformation from './ContactInformation.vue';
 import Map from './Map.vue';
 
 export default {
-  methods: {
-    handleFormSubmission(formData) {
-      console.log('Form submitted:', formData);
-    },
-  },
+  
   components: {
     ContactForm,
     ContactInformation,

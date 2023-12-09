@@ -57,7 +57,6 @@ export default {
             else {
                 cart.push({ id: this.product.id, qty: this.quantity });
             }
-            console.log('Emitting product-added-to-cart event');
             EventBus.emit('product-added-to-cart', {
                 product: this.product,
                 quantity: this.quantity
@@ -66,7 +65,6 @@ export default {
         },
         showToast(data) {
             const message = `Added ${data.quantity} units of "${data.product.name}" to cart!`;
-            console.log('Received product-added-to-cart event, showing toast:', message);
             toast.success(message, this.getToastOptions());
         },
         async fetchProductDetails() {
