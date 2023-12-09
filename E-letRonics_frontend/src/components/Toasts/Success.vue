@@ -12,7 +12,6 @@ export default {
   methods: {
     showToast(data) {
       const message = `Added ${data.quantity} units of "${data.product.name}" to cart!`;
-      console.log('Show Toast:', message);
       toast.success(message, this.getToastOptions());
     },
     getToastOptions() {

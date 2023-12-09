@@ -39,15 +39,12 @@ export default {
           this.quantity--;
           found.qty--;
           
-          console.log(cart);
-        } else {
-          console.log(this.id)
         }
         
         localStorage.setItem('cart', JSON.stringify(cart));
       }
       else if(this.quantity == 1){
-        console.log("entrou")
+        
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
       
         let found = cart.find(el => el.id === this.id);

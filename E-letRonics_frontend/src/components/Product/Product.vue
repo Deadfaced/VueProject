@@ -52,12 +52,6 @@ export default {
     Quantity,
     Rating,
   },
-  methods: {
-    redirectToDetails() {
-    console.log('Redirecting to details', this.item.id);
-    this.$router.push({ name: 'Details', params: { id: this.item.id } });
-  }
-  },
   setup(props) {
   },
 };
