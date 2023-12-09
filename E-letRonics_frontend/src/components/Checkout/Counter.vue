@@ -28,6 +28,7 @@ export default {
       }
       
       localStorage.setItem('cart', JSON.stringify(cart));
+      location.reload();
     },
     decreaseQuantity() {
       if (this.quantity > 1) {
@@ -42,6 +43,7 @@ export default {
         }
         
         localStorage.setItem('cart', JSON.stringify(cart));
+        
       }
       else if(this.quantity == 1){
         
@@ -52,11 +54,11 @@ export default {
         if (found) {
           cart = cart.filter(item => item.id !== this.id);
           this.quantity--;
-          location.reload();
         }
         
         localStorage.setItem('cart', JSON.stringify(cart));
       }
+      location.reload();
     },
   },
 };

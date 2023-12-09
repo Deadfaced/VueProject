@@ -6,6 +6,8 @@
         <div v-for="item in shoppingCart" :key="item.id" class="mb-4">
           <CheckoutCard :id="item.id" :image="item.image" :name="item.name" :description="item.description"
             :price="item.price" :cartQty="item.cartQty" :total-price="item.totalPrice" :item="item"></CheckoutCard>
+          <CheckoutCard :id="item.id" :image="item.image" :name="item.name" :description="item.description"
+            :price="item.price" :cartQty="item.cartQty" :total-price="item.totalPrice" :item="item"></CheckoutCard>
         </div>
         <div class="flex justify-between mt-4 mb-8">
           <router-link to="/" class="bg-gray-700 text-white px-4 py-2 rounded-md ml-4">Back</router-link>
@@ -13,7 +15,8 @@
         </div>
       </div>
       <div class="flex flex-col">
-        <SummaryCard></SummaryCard>
+        <SummaryCard v-if="shoppingCart.length > 0" :id="summaryItem.id" :name="summaryItem.name"
+          :cartQty="summaryItem.cartQty" :total-price="summaryItem.totalPrice" :item="summaryItem"></SummaryCard>
       </div>
     </div>
   </div>
@@ -23,6 +26,7 @@
 import CheckoutCard from '../components/Checkout/CheckoutCard.vue';
 import SummaryCard from '../components/Checkout/SummaryCard.vue';
 export default {
+  components: { SummaryCard, CheckoutCard },
   components: { SummaryCard, CheckoutCard },
   data() {
     return {
