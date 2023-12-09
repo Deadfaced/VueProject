@@ -7,7 +7,6 @@
         <h2 class="card-title text-sm">Unit Cost: {{ price }}</h2>
         <h2 class="card-title text-sm">{{ availability }}</h2>
         <h2 class="card-title text-sm">Total: {{ totalPrice }}</h2>
-        <Counter></Counter>
       </div>
     </div>
 </template>
