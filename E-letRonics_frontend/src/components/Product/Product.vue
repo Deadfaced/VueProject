@@ -1,11 +1,15 @@
 <template>
   <div class="flex justify-center items-center mx-auto">
       <div class="card glass w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }">
         <ImageComponent :imageUrl="item && item.image ? item.image : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'">
       </ImageComponent>
+        </router-link>
               <div class="px-5 py-3">
+                <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }">
                 <NameComponent :name="item ? item.name : 'Name is not available'">
         </NameComponent>
+                </router-link>
           <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse ">
               <DescriptionComponent :description="item ? item.description : 'Description is not Available'">
@@ -19,13 +23,8 @@
       </p>
             <Quantity v-if="item && item.quantity < 5" :quantity="item ? item.quantity : 0"></Quantity>
         </div>
-        <Rating :rating="item ? item.rating : 0"></Rating>
+        <Rating :rating="item ? item.rating : 0" :maxStars="5"></Rating>
           <div class="flex items-center justify-between action-container">
-            <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }">
-              Details
-            </router-link>
-
-            <button class="action-button">Add to Cart</button>
           </div>
         </div>
       </div>

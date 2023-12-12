@@ -1,23 +1,28 @@
 <template>
     <div class="rating">
-        <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-500" checked />
-        <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-500" checked />
-        <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-500" checked />
-        <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-500" />
-        <input type="radio" name="rating-4" class="mask mask-star-2 bg-yellow-500" />
+      <input
+        v-for="star in rating"
+        :key="star"
+        type="radio"
+        :name="`rating-${maxStars}`"
+        class="mask mask-star-2 bg-yellow-500"
+      />
     </div>
-</template>
-
-<script>
-export default {
-    setup () {
-        
-
-        return {}
-    }
-}
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+  </template>
+  
+  <script>
+  export default {
+    props: {
+      rating: {
+        default: 0,
+      },
+      maxStars: {
+        default: 5,
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  </style>
+  
