@@ -17,12 +17,18 @@ onMounted(() => {
         cartItemCount.value += eventData.quantity;
         localStorage.setItem('cartItemCount', cartItemCount.value.toString());
     });
+
+    EventBus.on('product-removed-from-cart', eventData => {
+        cartItemCount.value -= eventData.quantity;
+        if (cartItemCount.value < 0) cartItemCount.value = 0;
+        localStorage.setItem('cartItemCount', cartItemCount.value.toString());
+    });
 });
 
 onBeforeUnmount(() => {
     EventBus.off('product-added-to-cart');
+    EventBus.off('product-removed-from-cart');
 });
-
 </script>
 
 <template>
