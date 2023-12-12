@@ -1,8 +1,10 @@
 import { ref } from 'vue';
 
 const events = ref({});
+
 export const EventBus = {
     events: {},
+    
     emit(event, data) {
         if (!this.events[event]) return; 
         this.events[event].forEach(callback => callback(data));
