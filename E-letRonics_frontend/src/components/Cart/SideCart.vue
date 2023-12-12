@@ -44,7 +44,7 @@ export default {
 </script>
     
 <template>
-  <div class="fixed top-0 right-0 bottom-0 shadow-right z-50 bg-base-200 text-base-content flex flex-col ">
+  <div class="fixed top-0 right-0 bottom-0 shadow-right z-50 bg-base-200 text-base-content flex flex-col">
     <button class="ml-auto mr-2 text-white hover:text-gray-300" @click="$emit('close')">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
         stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" class="w-6 h-6">
