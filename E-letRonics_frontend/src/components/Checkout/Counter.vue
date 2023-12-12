@@ -31,6 +31,7 @@ export default {
       
       localStorage.setItem('cart', JSON.stringify(cart));
       EventBus.emit('cart-updated');
+      EventBus.emit('product-added-to-cart', { quantity: 1 });
     },
     decreaseQuantity() {
       if (this.quantity > 1) {
@@ -46,6 +47,7 @@ export default {
         localStorage.setItem('cart', JSON.stringify(cart));
 
         EventBus.emit('cart-updated');
+        EventBus.emit('product-removed-from-cart', { quantity: 1 });
         
       }
       else if(this.quantity == 1){
