@@ -42,7 +42,7 @@ export default {
       if (found !== -1) {
         cart.splice(found, 1);
         localStorage.setItem('cart', JSON.stringify(cart));
-        location.reload();
+        EventBus.emit('cart-updated');
      }
    }
   },

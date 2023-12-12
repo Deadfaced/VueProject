@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import EventBus from '../../event-bus';
+
 export default {
   props: ['qty', 'id'],
   data() {
@@ -28,7 +30,7 @@ export default {
       }
       
       localStorage.setItem('cart', JSON.stringify(cart));
-      location.reload();
+      EventBus.emit('cart-updated');
     },
     decreaseQuantity() {
       if (this.quantity > 1) {
@@ -41,8 +43,9 @@ export default {
           found.qty--;
           
         }
-        
         localStorage.setItem('cart', JSON.stringify(cart));
+
+        EventBus.emit('cart-updated');
         
       }
       else if(this.quantity == 1){
@@ -58,7 +61,7 @@ export default {
         
         localStorage.setItem('cart', JSON.stringify(cart));
       }
-      location.reload();
+      EventBus.emit('cart-updated');
     },
   },
 };
