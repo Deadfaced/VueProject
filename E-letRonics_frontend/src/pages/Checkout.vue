@@ -23,6 +23,7 @@
 <script>
 import CheckoutCard from '../components/Checkout/CheckoutCard.vue';
 import SummaryCard from '../components/Checkout/SummaryCard.vue';
+import EventBus from '../event-bus';
 
 export default {
   components: { SummaryCard, CheckoutCard },
@@ -64,6 +65,12 @@ export default {
     };
   },
 
+  created() {
+    EventBus.on('product-removed-from-cart', eventData => {
+      this.cartRemove(eventData);
+    });
+  },
+  
   methods: {
     removeAllFromCart() {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -73,7 +80,11 @@ export default {
       localStorage.setItem('cart', JSON.stringify(cart));
 
       location.reload();
-    }
+    },
+
+    cartRemove(itemToRemove) {
+      this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemToRemove.id);
+    },
   },
 };
 </script>
