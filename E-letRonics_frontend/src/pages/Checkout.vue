@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="flex flex-col">
-        <SummaryCard v-if="shoppingCart.length > 0" :id="summaryItem.id" :name="summaryItem.name"
+        <SummaryCard :id="summaryItem.id" :name="summaryItem.name"
           :cartQty="summaryItem.cartQty" :total-price="summaryItem.totalPrice" :item="summaryItem"></SummaryCard>
       </div>
     </div>
@@ -72,11 +72,15 @@ export default {
   },
   methods: {
     removeAllFromCart() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-      EventBus.emit('all-products-removed');
-      location.reload();
+    localStorage.removeItem('cart');
+    this.shoppingCart = [];
+    this.summaryItem = {
+      id: 'summary',
+      name: 'Summary',
+      cartQty: 0,
+      totalPrice: "0.00€",
+    };
+    EventBus.emit('all-products-removed');
     },
     
     cartRemove(itemToRemove) {
