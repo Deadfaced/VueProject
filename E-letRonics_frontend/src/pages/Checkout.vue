@@ -29,7 +29,7 @@ export default {
   components: { SummaryCard, CheckoutCard },
   data() {
     return {
-      shoppingCart: [{}],
+      shoppingCart: [],
       summaryItem: {},
     }
   },
@@ -70,7 +70,6 @@ export default {
       this.cartRemove(eventData);
     });
   },
-  
   methods: {
     removeAllFromCart() {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -81,7 +80,7 @@ export default {
 
       location.reload();
     },
-
+    
     cartRemove(itemToRemove) {
       this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemToRemove.id);
     },

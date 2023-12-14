@@ -26,7 +26,7 @@ export default {
         this.quantity++;
         found.qty++;
       } else {
-        alert('Produto não encontrado');
+        alert('Product not found');
       }
       
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -58,7 +58,7 @@ export default {
         }
         
         localStorage.setItem('cart', JSON.stringify(cart));
-        EventBus.emit('product-removed-from-cart', { quantity: 1 });
+        EventBus.emit('product-removed-from-cart', { quantity: 1, id: this.id });
       }
     },
   },
