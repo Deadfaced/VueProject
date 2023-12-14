@@ -73,11 +73,9 @@ export default {
   methods: {
     removeAllFromCart() {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
       cart = [];
-
       localStorage.setItem('cart', JSON.stringify(cart));
-
+      EventBus.emit('all-products-removed');
       location.reload();
     },
     
