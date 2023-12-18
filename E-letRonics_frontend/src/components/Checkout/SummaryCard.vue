@@ -20,7 +20,8 @@ import { fetchData } from '../../Services/apiService';
 import { EventBus } from '../../event-bus.js';
 
 export default {
-    // ...
+    props: ['id', 'image', 'name', 'description', 'price', 'cartQty', 'totalPrice'],
+
     data() {
         return {
             couponCode: ''
