@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Success></Success>
     <h2 class="text-4xl text-white mt-8 ml-14">My Cart</h2>
     <div class="flex justify-center items-start h-screen space-x-4 mt-4">
       <div class="flex flex-col">
@@ -24,9 +25,10 @@
 import CheckoutCard from '../components/Checkout/CheckoutCard.vue';
 import SummaryCard from '../components/Checkout/SummaryCard.vue';
 import EventBus from '../event-bus';
+import Success from '../components/Toasts/Success.vue';
 
 export default {
-  components: { SummaryCard, CheckoutCard },
+  components: { SummaryCard, CheckoutCard, Success },
   data() {
     return {
       shoppingCart: [],

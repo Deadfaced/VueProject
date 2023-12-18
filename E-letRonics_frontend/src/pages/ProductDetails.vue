@@ -63,10 +63,6 @@ export default {
             });
             localStorage.setItem('cart', JSON.stringify(cart));
         },
-        showToast(data) {
-            const message = `Added ${data.quantity} units of "${data.product.name}" to cart!`;
-            toast.success(message, this.getToastOptions());
-        },
         async fetchProductDetails() {
             try {
                 const productId = this.$route.params.id;
