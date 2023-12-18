@@ -30,26 +30,6 @@ export default {
     components: {
       Counter
     },
-    methods: {
-      removeFromCart() {
-  console.log('Carrinho antes da remoção:', localStorage.getItem('cart'));
-
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let foundIndex = cart.findIndex((el) => el.id === this.id);
-
-  if (foundIndex !== -1) {
-    console.log('Removendo item com ID:', this.id);
-    let removedItem = cart.splice(foundIndex, 1)[0];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    EventBus.emit('product-removed-from-cart', { quantity: removedItem.qty, id: this.id });
-
-    console.log('Carrinho após a remoção:', localStorage.getItem('cart'));
-  } else {
-    console.log('Item não encontrado no carrinho. ID:', this.id);
-  }
-},
-
-  },
 }
 </script>
 
