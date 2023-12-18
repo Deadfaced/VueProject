@@ -34,11 +34,10 @@ export default {
                 if (response.success) {
                     EventBus.emit('coupon-applied-successfully');
                 } else {
-                    window.alert('Coupon not found!');
+                    EventBus.emit('coupon-applied-failed');
                 }
             } catch (error) {
-                console.error(error);
-                window.alert('Something went wrong!');
+                EventBus.emit('coupon-applied-failed');
             }
         },
     },
