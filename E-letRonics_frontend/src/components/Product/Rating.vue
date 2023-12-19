@@ -1,11 +1,7 @@
 <template>
     <div class="rating">
       <input
-        v-for="star in rating"
-        :key="star"
-        type="radio"
-        :name="`rating-${maxStars}`"
-        class="mask mask-star-2 bg-yellow-500"
+        v-for="star in rating" :key="star" type="radio" :name="`rating-${maxStars}`" disabled class="mask mask-star-2 bg-yellow-500"
       />
     </div>
   </template>

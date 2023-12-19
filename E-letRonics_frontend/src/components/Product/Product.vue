@@ -11,21 +11,20 @@
         </NameComponent>
                 </router-link>
           <div class="flex items-center mt-2.5 mb-5">
-            <div class="flex items-center space-x-1 rtl:space-x-reverse ">
+            <div class="flex items-center space-x-1 rtl:space-x-reverse">
               <DescriptionComponent :description="item ? item.description : 'Description is not Available'">
         </DescriptionComponent>
             </div>
           </div>
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between price">
             <p>  
-        <Price :price="item ? item.price : 0">
-        </Price>
       </p>
             <Quantity v-if="item && item.quantity < 5" :quantity="item ? item.quantity : 0"></Quantity>
         </div>
-        <Rating :rating="item ? item.rating : 0" :maxStars="5"></Rating>
-          <div class="flex items-center justify-between action-container">
-          </div>
+        <div class="flex justify-between items-center mt-2.5 mb-5">
+          <Rating :rating="item ? item.rating : 0" :maxStars="5"></Rating>
+            <Price :price="item ? item.price : 0"></Price>
+        </div>
         </div>
       </div>
     </div>
@@ -59,6 +58,7 @@ export default {
 <style scoped>
 .card {
   transition: all 0.3s ease-in-out;
+  max-height: 90vh;
 }
 
 .btn {
@@ -67,5 +67,15 @@ export default {
 
 .transition-transform {
   transition: transform 0.5s ease-in-out;
+}
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+}
+.price {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
 }
 </style>

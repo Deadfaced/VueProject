@@ -18,15 +18,42 @@
           <button @click="decreaseQuantity" class="quantity-button">-</button>
           <span class="quantity">{{ quantity }}</span>
           <button @click="increaseQuantity" class="quantity-button">+</button>
-        </div>
-
-        <div class="action-buttons">
+          <div class="action-buttons">
           <button @click="addToCart" class="action-button add-to-cart">Add to Cart</button>
           <router-link to="/Shop" class="action-button back-to-products">Back to Products</router-link>
         </div>
+        </div>
+
+        
       </div>
     </div>
   </div>
+  <h1 class="text-2xl font-bold mt-8 mb-4">Reviews</h1>
+    <div class="testimonials-container">
+      <div class="testimonials-container mt-12">
+        <div class="testimonial flex items-center bg-white p-8 rounded-lg shadow-lg">
+          <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar" class="testimonial-avatar rounded-full mr-4 w-16 h-16">
+          <div>
+            <p class="text-gray-800 text-lg">"This product is amazing! It completely changed my life. I can't imagine my day without it."</p>
+            <p class="testimonial-author text-gray-600 italic mt-2">- John Doe</p>
+          </div>
+        </div>
+        <div class="testimonial flex items-center bg-white p-8 rounded-lg shadow-lg mt-4">
+          <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="User Avatar" class="testimonial-avatar rounded-full mr-4 w-16 h-16">
+          <div>
+            <p class="text-gray-800 text-lg">"I was skeptical at first, but after using this product, I'm a true believer. It exceeded my expectations."</p>
+            <p class="testimonial-author text-gray-600 italic mt-2">- Jane Smith</p>
+          </div>
+        </div>
+        <div class="testimonial flex items-center bg-white p-8 rounded-lg shadow-lg mt-4">
+          <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="User Avatar" class="testimonial-avatar rounded-full mr-4 w-16 h-16">
+          <div>
+            <p class="text-gray-800 text-lg">"Life before this product and after are two completely different things. I highly recommend it!"</p>
+            <p class="testimonial-author text-gray-600 italic mt-2">- Mike Johnson</p>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -91,14 +118,16 @@ export default {
 <style scoped>
 .product-details-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin: 20px;
 }
 
 .product-details-content {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .product-image-container {
@@ -117,52 +146,59 @@ export default {
   padding: 20px;
 }
 
-.product-name {
-  font-size: 24px;
+.product-title {
+  font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .product-description {
   color: #555;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .product-meta {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.product-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #888;
 }
 
 .product-price {
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #333;
-}
-
-.product-rating {
-  font-size: 14px;
-  color: #555;
 }
 
 .quantity-controls {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .quantity-button {
   background-color: #4a5568;
   color: white;
   padding: 10px;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
+  border-radius: 999px;
 }
 
 .quantity {
-  margin: 0 10px;
-  font-size: 18px;
+  margin: 0 1rem;
+  font-size: 1.5rem;
+}
+
+.product-rating {
+  font-size: 1.2rem;
+  color: #555;
 }
 
 .action-buttons {
@@ -170,12 +206,13 @@ export default {
 }
 
 .action-button {
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 10px;
+  margin-right: 1rem;
+  border-radius: 999px;
 }
 
 .add-to-cart {
@@ -190,5 +227,45 @@ export default {
 
 .action-button:hover {
   background-color: #cbd5e0;
+}
+
+
+.testimonials-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.testimonial {
+  background-color: #f8f8f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.testimonial p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-style: italic;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+
+@media (min-width: 768px) {
+  .product-details-content {
+    flex-direction: row;
+  }
+
+  .product-info {
+    text-align: left;
+  }
 }
 </style>
