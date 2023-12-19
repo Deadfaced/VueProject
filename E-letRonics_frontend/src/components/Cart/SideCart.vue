@@ -14,29 +14,34 @@ export default {
     return {};
   },
   async mounted() {
-      const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-      this.shoppingCart = [];
-      cartList.forEach(async element => {
-        const response = await fetch(`http://127.0.0.1:3333/products/${element.id}`);
-        const data = await response.json();
-        this.shoppingCart.push({
-          id: element.id,
-          image: data.image,
-          name: data.name,
-          cartQty: element.qty,
-          price: data.price + "€",
-          availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
-          totalPrice: (data.price * element.qty).toFixed(2) + "€",
-        });
+    const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+    this.shoppingCart = [];
+    cartList.forEach(async element => {
+      const response = await fetch(`http://127.0.0.1:3333/products/${element.id}`);
+      const data = await response.json();
+      this.shoppingCart.push({
+        id: element.id,
+        image: data.image,
+        name: data.name,
+        cartQty: element.qty,
+        price: data.price + "€",
+        availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
+        totalPrice: (data.price * element.qty).toFixed(2) + "€",
       });
-      
+    });
+
     EventBus.on('close-sidecart', () => {
       this.$emit('close');
-      
     });
-    
+
+    EventBus.on('delete-cart-item', (itemId) => {
+      const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+      const updatedCart = cartList.filter(item => item.id !== itemId);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemId);
+    });
   },
-  
+
   beforeUnmount() {
     EventBus.off('close-sidecart');
   },
@@ -66,7 +71,9 @@ export default {
       </div>
       <ul>
         <li>
-          <card-cart v-for="item in shoppingCart" :key="item.id" :image="item.image" :name="item.name" :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :total-price="item.totalPrice" :item="item"></card-cart>
+          <card-cart v-for="item in shoppingCart" :key="item.id" :id="item.id" :image="item.image" :name="item.name"
+            :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :total-price="item.totalPrice"
+            :item="item"></card-cart>
         </li>
       </ul>
     </div>
