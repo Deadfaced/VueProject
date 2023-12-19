@@ -14,7 +14,7 @@
         </div>
         <div class="mt-8 flex flex-col sm:flex-row">
           <Counter :id="id" :qty="cartQty"></Counter>
-          <button @click="removeFromCart()"
+          <button @click="removeFromCart"
             class="ml-auto mb-4 mr-2 cursor-pointer rounded-md border px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-rose-500 hover:text-white ">
             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
               <path fill="#ffffff"
@@ -47,8 +47,7 @@ export default {
       if (found !== -1) {
         let removedItem = cart.splice(found, 1)[0]; 
         localStorage.setItem('cart', JSON.stringify(cart));
-        EventBus.emit('cart-updated');
-        EventBus.emit('product-removed-from-cart', { quantity: removedItem.qty });
+        EventBus.emit('product-removed-from-cart', { quantity: removedItem.qty, id: this.id });
       }
     }
   },

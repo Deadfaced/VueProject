@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Success></Success>
+    <Failure></Failure>
     <h2 class="text-4xl text-white mt-8 ml-14">My Cart</h2>
     <div class="flex justify-center items-start h-screen space-x-4 mt-4">
       <div class="flex flex-col">
@@ -13,7 +15,7 @@
         </div>
       </div>
       <div class="flex flex-col">
-        <SummaryCard v-if="shoppingCart.length > 0" :id="summaryItem.id" :name="summaryItem.name"
+        <SummaryCard :id="summaryItem.id" :name="summaryItem.name"
           :cartQty="summaryItem.cartQty" :total-price="summaryItem.totalPrice" :item="summaryItem"></SummaryCard>
       </div>
     </div>
@@ -23,12 +25,15 @@
 <script>
 import CheckoutCard from '../components/Checkout/CheckoutCard.vue';
 import SummaryCard from '../components/Checkout/SummaryCard.vue';
+import EventBus from '../event-bus';
+import Success from '../components/Toasts/Success.vue';
+import Failure from '../components/Toasts/Failure.vue';
 
 export default {
-  components: { SummaryCard, CheckoutCard },
+  components: { SummaryCard, CheckoutCard, Success, Failure },
   data() {
     return {
-      shoppingCart: [{}],
+      shoppingCart: [],
       summaryItem: {},
     }
   },
@@ -64,16 +69,27 @@ export default {
     };
   },
 
+  created() {
+    EventBus.on('product-removed-from-cart', eventData => {
+      this.cartRemove(eventData);
+    });
+  },
   methods: {
     removeAllFromCart() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-      cart = [];
-
-      localStorage.setItem('cart', JSON.stringify(cart));
-
-      location.reload();
-    }
+    localStorage.removeItem('cart');
+    this.shoppingCart = [];
+    this.summaryItem = {
+      id: 'summary',
+      name: 'Summary',
+      cartQty: 0,
+      totalPrice: "0.00€",
+    };
+    EventBus.emit('all-products-removed');
+    },
+    
+    cartRemove(itemToRemove) {
+      this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemToRemove.id);
+    },
   },
 };
 </script>

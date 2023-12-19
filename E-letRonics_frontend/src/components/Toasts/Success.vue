@@ -14,6 +14,10 @@ export default {
       const message = `Added ${data.quantity} units of "${data.product.name}" to cart!`;
       toast.success(message, this.getToastOptions());
     },
+    couponToast() {
+      const message = `Coupon applied successfully!`;
+      toast.success(message, this.getToastOptions());
+    },
     getToastOptions() {
       return {
         position: 'top-right',
@@ -34,9 +38,11 @@ export default {
   },
   created() {
     EventBus.on('product-added-to-cart', this.showToast);
+    EventBus.on('coupon-applied-successfully', this.couponToast);
   },
   beforeUnmount() {
     EventBus.off('product-added-to-cart', this.showToast);
+    EventBus.off('coupon-applied-successfully', this.couponToast);
   },
 };
 </script>

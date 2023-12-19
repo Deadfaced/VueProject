@@ -23,6 +23,11 @@ onMounted(() => {
         if (cartItemCount.value < 0) cartItemCount.value = 0;
         localStorage.setItem('cartItemCount', cartItemCount.value.toString());
     });
+
+    EventBus.on('all-products-removed', () => {
+        cartItemCount.value = 0;
+        localStorage.setItem('cartItemCount', '0');
+    });
 });
 
 onBeforeUnmount(() => {

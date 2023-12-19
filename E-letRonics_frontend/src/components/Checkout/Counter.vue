@@ -26,17 +26,16 @@ export default {
         this.quantity++;
         found.qty++;
       } else {
-        alert('Produto não encontrado');
+        alert('Product not found');
       }
       
       localStorage.setItem('cart', JSON.stringify(cart));
-      EventBus.emit('cart-updated');
       EventBus.emit('product-added-to-cart', { quantity: 1 });
     },
     decreaseQuantity() {
       if (this.quantity > 1) {
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
         let found = cart.find(el => el.id === this.id);
         
         if (found) {
@@ -45,15 +44,12 @@ export default {
           
         }
         localStorage.setItem('cart', JSON.stringify(cart));
-
-        EventBus.emit('cart-updated');
         EventBus.emit('product-removed-from-cart', { quantity: 1 });
         
       }
-      else if(this.quantity == 1){
+      else if(this.quantity === 1){
         
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
         let found = cart.find(el => el.id === this.id);
         
         if (found) {
@@ -62,8 +58,8 @@ export default {
         }
         
         localStorage.setItem('cart', JSON.stringify(cart));
+        EventBus.emit('product-removed-from-cart', { quantity: 1, id: this.id });
       }
-      EventBus.emit('cart-updated');
     },
   },
 };

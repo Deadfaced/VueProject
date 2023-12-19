@@ -61,6 +61,17 @@ export default class CouponsController {
  *                   type: string
  *                   example: "Internal Server Error"
  */
+
+  public async index({ response }: HttpContextContract) {
+    try {
+      const coupons = await Coupon.all()
+
+      response.status(200).json(coupons)
+    } catch (error) {
+      response.status(500).json(error)
+    }
+  }
+
   public async checkCoupon({ request, response }: HttpContextContract) {
     try {
 
