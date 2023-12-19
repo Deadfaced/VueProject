@@ -38,6 +38,13 @@ export default {
       const cartList = JSON.parse(localStorage.getItem('cart')) || [];
       const updatedCart = cartList.filter(item => item.id !== itemId);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+      let newCardItemCount = 0;
+      for (const item of updatedCart) {
+        newCardItemCount += item.qty;
+      }
+      localStorage.setItem('cartItemCount', newCardItemCount.toString());
+
       this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemId);
     });
   },
