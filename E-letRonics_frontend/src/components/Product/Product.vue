@@ -56,11 +56,6 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  transition: all 0.3s ease-in-out;
-  max-height: 90vh;
-}
-
 .btn {
   transition: all 0.3s ease-in-out;
 }
