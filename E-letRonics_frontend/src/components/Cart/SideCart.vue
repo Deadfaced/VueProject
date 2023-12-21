@@ -63,14 +63,14 @@ export default {
 </script>
     
 <template>
-  <div class="fixed top-0 right-0 bottom-0 shadow-right z-50 bg-base-200 text-base-content flex flex-col">
+  <div class="fixed top-0 right-0 bottom-0 shadow-right w-64 h-full z-50 bg-base-200 text-base-content flex flex-col">
     <button class="ml-auto mr-2 text-white hover:text-gray-300" @click="$emit('close')">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
         stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" class="w-6 h-6">
         <path d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
-    <div class="pr-4 pb-4 pl-4 overflow-y-auto no-scrollbar">
+    <div class="pr-4 pb-4 pl-4 overflow-y-auto h-full no-scrollbar">
       <div class="sticky top-0 bg-base-200">
         <h2 class="text-lg font-semibold mb-4 flex items-center justify-center">
           <span class="highlight">Cart</span>
@@ -81,7 +81,10 @@ export default {
             </path>
           </svg>
         </h2>
-        <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping</h3>
+        <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping over €50</h3>
+      </div>
+      <div v-if="shoppingCart.length === 0" class="flex items-center justify-center">
+        <img width="80" src="https://loja.forestpaper.com.br/skin/frontend/k13/default/K13/overwrite/checkout/cart/img/empty-cart.png" alt="Empty Cart" class="mt-4">
       </div>
       <ul>
         <li>
@@ -91,8 +94,8 @@ export default {
         </li>
       </ul>
     </div>
-    <div class=" mt-auto ml-auto py-6 space-x-2">
-      <router-link :to="{ name: 'Checkout', params: { shoppingCart: shoppingCart } }"
+    <div class="ml-auto flex items-center justify-center py-6 h-24">
+      <router-link v-if="shoppingCart.length > 0" :to="{ name: 'Checkout', params: { shoppingCart: shoppingCart } }"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-4">Checkout</router-link>
     </div>
   </div>
