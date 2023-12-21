@@ -28,11 +28,17 @@ onMounted(() => {
         cartItemCount.value = 0;
         localStorage.setItem('cartItemCount', '0');
     });
+
+    EventBus.on('update-cart-count', (updatedItemCount) => {
+      cartItemCount.value = updatedItemCount;
+    });
 });
 
 onBeforeUnmount(() => {
     EventBus.off('product-added-to-cart');
     EventBus.off('product-removed-from-cart');
+    EventBus.off('all-products-removed');
+    EventBus.off('update-cart-count');
 });
 </script>
 

@@ -47,10 +47,17 @@ export default {
 
       this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemId);
     });
+
+    EventBus.on('update-count', () => {
+      const updatedItemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
+      EventBus.emit('update-cart-count', updatedItemCount);
+    });
   },
 
   beforeUnmount() {
     EventBus.off('close-sidecart');
+    EventBus.off('delete-cart-item');
+    EventBus.off('update-count');
   },
 };
 </script>

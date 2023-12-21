@@ -34,6 +34,7 @@ export default {
   methods: {
     deleteCartItem() {
       EventBus.emit('delete-cart-item', this.id);
+      EventBus.emit('update-count');
     },
   },
   components: {
