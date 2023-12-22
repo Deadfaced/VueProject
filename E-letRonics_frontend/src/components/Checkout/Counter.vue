@@ -21,21 +21,27 @@ export default {
 
   methods: {
 
-    increaseQuantity() {
+    async increaseQuantity() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let totalPrice = Number(localStorage.getItem('totalPrice')) || 0;
 
       let found = cart.find(el => el.id === this.id);
 
+      const response = await fetch(`http://127.0.0.1:3333/products/${found.id}`);
+      const data = await response.json();
       if (found) {
         this.quantity++;
         found.qty++;
-        EventBus.emit('product-quantity-increased', { price: found.price });
+        console.log(found.qty);
+        totalPrice += Number(data.price);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('totalPrice', totalPrice);
+        EventBus.emit('product-quantity-increased', { price: data.price, totalPrice: totalPrice });
+        EventBus.emit('product-added-to-cart', { quantity: 1 });
       } else {
         alert('Product not found');
       }
 
-      localStorage.setItem('cart', JSON.stringify(cart));
-      EventBus.emit('product-added-to-cart', { quantity: 1 });
     },
 
     decreaseQuantity() {

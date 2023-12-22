@@ -26,18 +26,12 @@ export default {
             totalPrice: 0,
         }
     },
+    props: ['cartQty'],
     created() {
-        EventBus.on('product-quantity-increased', (product) => {
-            this.totalPrice += Number(product.price);
-            localStorage.setItem('totalPrice', this.totalPrice.toFixed(2));
-        });
+        EventBus.on('product-quantity-increased', this.increaseProdQty);
     },
     mounted() {
-        this.$nextTick(() => {
-            if (localStorage.getItem('totalPrice')) {
-                this.totalPrice = Number(localStorage.getItem('totalPrice'));
-            }
-        });
+        this.totalPrice = Number(localStorage.getItem('totalPrice'));
     },
     destroyed() {
         EventBus.off('product-quantity-increased');
@@ -65,6 +59,9 @@ export default {
             } catch (error) {
                 EventBus.emit('coupon-applied-failed');
             }
+        },
+        async increaseProdQty({ price, totalPrice }) {
+            this.totalPrice = totalPrice + price;
         },
     },
 }
