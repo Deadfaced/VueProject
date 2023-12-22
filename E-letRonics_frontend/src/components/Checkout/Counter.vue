@@ -24,6 +24,7 @@ export default {
     async increaseQuantity() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       let totalPrice = Number(localStorage.getItem('totalPrice')) || 0;
+      let cartItemCount = Number(localStorage.getItem('cartItemCount')) || 0;
 
       let found = cart.find(el => el.id === this.id);
 
@@ -32,7 +33,7 @@ export default {
       if (found) {
         this.quantity++;
         found.qty++;
-        console.log(found.qty);
+        cartItemCount++;
         totalPrice += Number(data.price);
         localStorage.setItem('cart', JSON.stringify(cart));
         localStorage.setItem('totalPrice', totalPrice);
@@ -44,16 +45,25 @@ export default {
 
     },
 
-    decreaseQuantity() {
+    async decreaseQuantity() {
       if (this.quantity > 1) {
 
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalPrice = Number(localStorage.getItem('totalPrice')) || 0;
+        let cartItemCount = Number(localStorage.getItem('cartItemCount')) || 0;
+
         let found = cart.find(el => el.id === this.id);
 
+        const response = await fetch(`http://127.0.0.1:3333/products/${found.id}`);
+        const data = await response.json();
         if (found) {
           this.quantity--;
           found.qty--;
-
+          cartItemCount--;
+          totalPrice -= Number(data.price);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          localStorage.setItem('totalPrice', totalPrice);
+          EventBus.emit('product-quantity-decreased', { price: data.price, totalPrice: totalPrice });
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         EventBus.emit('product-removed-from-cart', { quantity: 1 });

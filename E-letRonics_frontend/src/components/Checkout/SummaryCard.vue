@@ -24,17 +24,14 @@ export default {
         return {
             couponCode: '',
             totalPrice: 0,
+            cartQty: 0,
         }
     },
-    props: ['cartQty'],
     created() {
-        EventBus.on('product-quantity-increased', this.increaseProdQty);
     },
     mounted() {
         this.totalPrice = Number(localStorage.getItem('totalPrice'));
-    },
-    destroyed() {
-        EventBus.off('product-quantity-increased');
+        this.cartQty = Number(localStorage.getItem('cartItemCount'));
     },
     watch: {
         totalPrice(newVal) {
@@ -59,9 +56,6 @@ export default {
             } catch (error) {
                 EventBus.emit('coupon-applied-failed');
             }
-        },
-        async increaseProdQty({ price, totalPrice }) {
-            this.totalPrice = totalPrice + price;
         },
     },
 }
