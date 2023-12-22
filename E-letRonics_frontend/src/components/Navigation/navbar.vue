@@ -71,5 +71,6 @@ onBeforeUnmount(() => {
     .navbar{
         top: 0;
         position: fixed;
+        z-index: 1000;
     }
 </style>
