@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col items-center m-20 details-container">
+  <div class="flex flex-col items-center mt-8 details-container">
     <Success />
     <div class="flex flex-col items-center" v-if="product">
       <div class="flex-1">
-        <h2 class="text-3xl font-bold text-center mb-10">{{ product.name }}</h2>
+        <h2 class="text-3xl font-bold text-center mb-10 mx-10">{{ product.name }}</h2>
 
         <img :src="product.image || 'https://example.com/placeholder.jpg'" alt="Product Image" class="rounded-md shadow-md w-20 h-20 lg:w-1/2 lg:h-auto mx-auto">
       </div>
@@ -11,11 +11,11 @@
         <p class="text-gray-400 text-center">{{ product.description }}</p>
 
         <div class="flex justify-between mt-4">
-          <span class="text-lg font-bold text-3x1 text-yellow-500">${{ product.price }}</span>
+          <span class="text-lg font-bold text-3x1 text-yellow-500">{{ product.price }} €</span>
           <span class="text-lg font-bold text-3x1 text-yellow-500">Rating: {{ product.rating }}.0</span>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-end">
   <button @click="decreaseQuantity" class="btn">-</button>
   <span class="mx-4 text-2xl">{{ quantity }}</span>
   <button @click="increaseQuantity" class="btn">+</button>
@@ -28,8 +28,8 @@
       </div>
     </div>
   </div>
-    <h1 class="text-2xl font-bold mb-4 text-center">Reviews</h1>
-    <div class="flex flex-col items-center mt-12 mb-12">
+    <h1 class="text-2xl font-bold text-center">Reviews</h1>
+    <div class="flex flex-col items-center mt-12">
       <div class="flex-1 mb-4 review-card">
         <div class="flex items-center p-8 rounded-lg shadow-lg bg-slate-700">
           <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar" class="rounded-full mr-4 w-16 h-16">
@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 review-card">
+      <div class="flex-1 review-card mb-8">
         <div class="flex items-center p-8 rounded-lg shadow-lg bg-slate-700">
           <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="User Avatar" class="rounded-full mr-4 w-16 h-16">
           <div>

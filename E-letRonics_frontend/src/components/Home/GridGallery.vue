@@ -4,15 +4,17 @@
             <div class="text-center">
                 <h1 class="font-bold text-5xl mb-6">Gallery</h1>
             </div>
-            <div class="grid grid-cols-4 grid-rows-3 gap-3 w-70w h-80h">
-                <div class="bg-red-500 col-span-2 row-span-2">1</div>
-                <div class="bg-red-500">2</div>
-                <div class="bg-red-500">3</div>
-                <div class="bg-red-500">4</div>
-                <div class="bg-red-500">5</div>
-                <div class="bg-red-500">6</div>
-                <div class="bg-red-500">7</div>
-                <div class="bg-red-500 col-span-2">8</div>
+            <div class="container">
+                <div class="grid grid-cols-4 grid-rows-3 gap-3 lg:w-70w lg:h-80h">
+                    <div class=" col-span-2 row-span-2"><img src="../../assets/images/1.jpg"></div>
+                    <div class=""><img src="../../assets/images/2.jpg"></div>
+                    <div class=""><img src="../../assets/images/3.jpg"></div>
+                    <div class=""><img src="../../assets/images/4.jpg"></div>
+                    <div class=""><img src="../../assets/images/5.jpg"></div>
+                    <div class=""><img src="../../assets/images/6.jpg"></div>
+                    <div class=""><img src="../../assets/images/7.jpg"></div>
+                    <div class=" col-span-2"><img src="../../assets/images/8.jpg"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,7 +26,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-
+<style>
 </style>
