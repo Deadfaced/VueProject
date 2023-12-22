@@ -1,11 +1,12 @@
 <template>
-  <div class="flex flex-col items-center mt-8 details-container">
+  <div class="flex flex-col items-center mt-8">
     <Success />
     <div class="flex flex-col items-center" v-if="product">
       <div class="flex-1">
         <h2 class="text-3xl font-bold text-center mb-10 mx-10">{{ product.name }}</h2>
-
-        <img :src="product.image || 'https://example.com/placeholder.jpg'" alt="Product Image" class="rounded-md shadow-md w-20 h-20 lg:w-1/2 lg:h-auto mx-auto">
+        <div class="mx-80">
+          <img :src="product.image || 'https://example.com/placeholder.jpg'" alt="Product Image" class="rounded-md shadow-md w-20 h-20 lg:w-1/2 lg:h-auto mx-auto"> 
+        </div>
       </div>
       <div class="flex-1 p-20">
         <p class="text-gray-400 text-center">{{ product.description }}</p>

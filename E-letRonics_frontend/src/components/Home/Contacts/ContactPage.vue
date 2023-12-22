@@ -1,10 +1,10 @@
 <template>
   <div class="container mx-8">
-    <div class="d-flex flex-wrap">
-      <div class="flex-1">
+    <div class="lg:flex">
+      <div class="w-full lg:w-3/4">
         <ContactForm></ContactForm>
       </div>
-      <div class="flex-1">
+      <div class="w-full lg:w-1/4">
         <Map></Map>
       </div>
     </div>
