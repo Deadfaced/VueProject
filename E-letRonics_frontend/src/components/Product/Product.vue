@@ -52,6 +52,7 @@ export default {
   setup(props) {
   },
 };
+
 </script>
 
 <style scoped>

@@ -6,7 +6,7 @@ import Shop from './pages/Shop.vue';
 import ProductDetails from './pages/ProductDetails.vue';
 import AboutUs from './pages/AboutUs.vue';
 import Checkout from './pages/Checkout.vue';
-
+import ProductList from './components/Product/ProductList.vue';
 const routes = [
   {
     path: '/',
