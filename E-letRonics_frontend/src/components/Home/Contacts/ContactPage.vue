@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto my-8">
-    <div class="flex flex-wrap gap-8">
+  <div class="container mx-auto mt-8 pt-4">
+    <div class="flex flex-wrap">
       <div class="flex-1">
         <ContactForm></ContactForm>
       </div>

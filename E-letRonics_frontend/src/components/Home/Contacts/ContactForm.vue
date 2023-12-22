@@ -1,7 +1,7 @@
 <template>
   <div class="my-8">
-    <h2 class="text-2xl font-semibold mb-4">Contact Us</h2>
-    <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto">
+    <h2 class="text-2xl font-semibold mb-5">Contact Us</h2>
+    <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-5 mt-5 max-w-md mx-auto">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
           Name

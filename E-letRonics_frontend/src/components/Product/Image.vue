@@ -1,6 +1,6 @@
 <template>
-  <figure class="image">
-    <img class="w-full h-auto transition-transform transform hover:scale-105" :src="imageUrl" style="width: 60vw; height: 60vh;"/>
+  <figure class="image py-2 px-2">
+    <img class="transition-transform transform hover:scale-105 rounded-lg" :src="imageUrl" style="width: 40vw; height: 40vh;"/>
   </figure>
 </template>
 
