@@ -7,7 +7,7 @@
       <div class="flex flex-col">
         <div v-for="item in shoppingCart" :key="item.id" class="mb-4">
           <CheckoutCard :id="item.id" :image="item.image" :name="item.name" :description="item.description"
-            :price="item.price" :cartQty="item.cartQty" :total-price="item.totalPrice" :item="item"></CheckoutCard>
+            :price="item.price" :cartQty="item.cartQty" :item="item"></CheckoutCard>
         </div>
         <div class="flex justify-between mt-4 mb-8">
           <router-link to="/" class="bg-gray-700 text-white px-4 py-2 rounded-md ml-4">Back</router-link>
@@ -15,8 +15,7 @@
         </div>
       </div>
       <div class="flex flex-col">
-        <SummaryCard :id="summaryItem.id" :name="summaryItem.name"
-          :cartQty="summaryItem.cartQty" :total-price="summaryItem.totalPrice" :item="summaryItem"></SummaryCard>
+        <SummaryCard></SummaryCard>
       </div>
     </div>
   </div>
@@ -34,7 +33,6 @@ export default {
   data() {
     return {
       shoppingCart: [],
-      summaryItem: {},
     }
   },
 
@@ -51,22 +49,16 @@ export default {
         description: data.description,
         price: data.price + "€",
         cartQty: element.qty,
-        totalPrice: (data.price * element.qty).toFixed(2) + "€",
       });
     }
-
+    this.calculateTotalPrice();
+    
     let cartQty = 0;
     let totalPrice = 0;
     for (const item of this.shoppingCart) {
       cartQty += item.cartQty;
       totalPrice += parseFloat(item.totalPrice);
     }
-    this.summaryItem = {
-      id: 'summary',
-      name: 'Summary',
-      cartQty,
-      totalPrice: totalPrice.toFixed(2) + "€",
-    };
   },
 
   created() {
@@ -76,19 +68,21 @@ export default {
   },
   methods: {
     removeAllFromCart() {
-    localStorage.removeItem('cart');
-    this.shoppingCart = [];
-    this.summaryItem = {
-      id: 'summary',
-      name: 'Summary',
-      cartQty: 0,
-      totalPrice: "0.00€",
-    };
-    EventBus.emit('all-products-removed');
+      localStorage.removeItem('cart');
+      this.shoppingCart = [];
+      EventBus.emit('all-products-removed');
     },
-    
+
     cartRemove(itemToRemove) {
       this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemToRemove.id);
+    },
+
+    calculateTotalPrice() {
+      let totalPrice = 0;
+      for (let i = 0; i < this.shoppingCart.length; i++) {
+        totalPrice += parseFloat(this.shoppingCart[i].price) * this.shoppingCart[i].cartQty;
+      }
+      localStorage.setItem('totalPrice', totalPrice.toFixed(2));
     },
   },
 };

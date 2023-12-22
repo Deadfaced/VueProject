@@ -35,8 +35,8 @@ export default class extends BaseSeeder {
       const usageLimit = generateRandomNumber(3, 12);
       const usageCount = generateRandomNumber(0, usageLimit);
       const validFrom = generateRandomDateTime(
-        currentDate,
-        currentDate.plus({ months: maxMonths, weeks: maxWeeks })
+        currentDate.minus({ months: maxMonths, weeks: maxWeeks }),
+        currentDate
       );
       const validUntil = validFrom.plus({ months: 1, weeks: 2 }); // 1 month and 2 weeks period
 

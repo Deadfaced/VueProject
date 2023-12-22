@@ -3,7 +3,7 @@
         <p class="mb-6 text-2xl font-medium">Summary</p>
         <p class="mb-6">Total Articles: {{ cartQty }}</p>
         <hr class="my-6 border-t">
-        <p class="mt-6 mb-6">Total Payable: {{ totalPrice }}</p>
+        <p class="mt-6 mb-6">Total Payable: {{ totalPrice }}€</p>
         <div class="flex w-[20rem] rounded bg-white" x-data="{ search: '' }">
             <form @submit.prevent="checkCoupon">
                 <input type="text" class="w-full border-none bg-transparent px-5 text-gray-900 focus:outline-none"
@@ -20,18 +20,44 @@ import { fetchData } from '../../Services/apiService';
 import { EventBus } from '../../event-bus.js';
 
 export default {
-    props: ['id', 'image', 'name', 'description', 'price', 'cartQty', 'totalPrice'],
-
     data() {
         return {
-            couponCode: ''
+            couponCode: '',
+            totalPrice: 0,
         }
+    },
+    created() {
+        EventBus.on('product-quantity-increased', (product) => {
+            this.totalPrice += Number(product.price);
+            localStorage.setItem('totalPrice', this.totalPrice.toFixed(2));
+        });
+    },
+    mounted() {
+        this.$nextTick(() => {
+            if (localStorage.getItem('totalPrice')) {
+                this.totalPrice = Number(localStorage.getItem('totalPrice'));
+            }
+        });
+    },
+    destroyed() {
+        EventBus.off('product-quantity-increased');
+    },
+    watch: {
+        totalPrice(newVal) {
+            localStorage.setItem('totalPrice', newVal);
+        },
     },
     methods: {
         async checkCoupon() {
             try {
                 const response = await fetchData('http://localhost:3333/check-coupon', { couponCode: this.couponCode }, 'post');
                 if (response.success) {
+
+                    const totalPriceNumber = Number(this.totalPrice.replace('€', ''));
+                    const discountAmount = totalPriceNumber * response.discount / 100;
+                    const newTotalPrice = totalPriceNumber - discountAmount;
+                    this.totalPrice = newTotalPrice.toFixed(2) + "€";
+                    EventBus.$emit('total-price-updated', this.totalPrice);
                     EventBus.emit('coupon-applied-successfully');
                 } else {
                     EventBus.emit('coupon-applied-failed');
