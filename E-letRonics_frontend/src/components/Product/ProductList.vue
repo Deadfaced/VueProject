@@ -1,8 +1,8 @@
 
   <template>
     <div>
-      <h1 class="text-3xl font-bold text-center my-10 md:my-20">Products that you might not know</h1>
-      <div class="flex flex-wrap justify-center my-10 md:my-10 ">
+      <h1 class="text-3xl font-bold text-center mt-8 md:my-10">Products that you might not know</h1>
+      <div class="flex flex-wrap justify-center  md:my-10">
         <Product v-for="product in products" :key="product.id" :item="product" class="mt-5" />
       </div>
     </div>

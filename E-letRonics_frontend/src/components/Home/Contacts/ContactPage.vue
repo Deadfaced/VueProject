@@ -1,11 +1,10 @@
 <template>
-  <div class="container mx-auto mt-8 pt-4">
-    <div class="flex flex-wrap">
-      <div class="flex-1">
+  <div class="container mx-8">
+    <div class="lg:flex">
+      <div class="w-full lg:w-3/4">
         <ContactForm></ContactForm>
       </div>
-      <div class="flex-1">
-        <ContactInformation></ContactInformation>
+      <div class="w-full lg:w-1/4">
         <Map></Map>
       </div>
     </div>
@@ -14,14 +13,12 @@
 
 <script>
 import ContactForm from './ContactForm.vue';
-import ContactInformation from './ContactInformation.vue';
 import Map from './Map.vue';
 
 export default {
   
   components: {
     ContactForm,
-    ContactInformation,
     Map,
   },
 };

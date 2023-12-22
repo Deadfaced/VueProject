@@ -1,8 +1,8 @@
 <template>
-  <section class="text-gray-600 body-font">
-    <div class="px-5 py-24 mx-auto flex items-center flex-col">
-      <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-700">Products</h1>
+  <section class="text-gray-600">
+    <div class="px-5 py-8 mx-auto flex items-center flex-col d-container">
+      <div class="flex flex-col text-center mb-8">
+        <h1 class="sm:text-3xl text-3xl font-medium title-font mb-4 text-gray-300">Products</h1>
       </div>
       <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
         <div v-for="product in products" :key="product.id">
@@ -53,8 +53,8 @@ export default {
 </script>
 
 <style scoped>
-/* .container{
-  padding-right: 10%!important;
-  padding-left: 10%!important;
-} */
+.d-container{
+  margin-right: 5%!important;
+  margin-left: 5%!important;
+} 
 </style>

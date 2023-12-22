@@ -3,6 +3,7 @@
         <Hero />
         <GridGallery />
         <TestimonialCard />
+        <div id="contacts" class></div>
         <ContactPage />
     </div>
 </template>

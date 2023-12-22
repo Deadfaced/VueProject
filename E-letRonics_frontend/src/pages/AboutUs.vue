@@ -4,7 +4,7 @@
             <div class="stars1"></div>
             <div class="stars2"></div>
             <div class="stars3"></div>
-        </div>
+    </div>
     <AboutCard class="mb-4"></AboutCard>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 mt-10 w-full">
       <MissionCard></MissionCard>

@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
         <div class="flex-1">
             <router-link to="/" class="btn btn-ghost text-xl">Home</router-link>
             <router-link to="/About" class="btn btn-ghost text-xl">About</router-link>
-            <a class="btn btn-ghost text-xl">Contact</a>
+            <router-link to="/" hash="contacts" class="btn btn-ghost text-xl">Contact</router-link>
         </div>
         <div class="flex-none">
             <div class="dropdown dropdown-end">

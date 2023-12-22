@@ -1,6 +1,6 @@
 <template>
-  <div class="my-8">
-    <h2 class="text-2xl font-semibold mb-5">Contact Us</h2>
+  <div class="my-8 mx-8">
+    <h2 class="text-2xl font-semibold text-center">Contact Us</h2>
     <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-5 mt-5 max-w-md mx-auto">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
@@ -11,7 +11,7 @@
           type="text"
           id="name"
           name="name"
-          class="input-field"
+          class="input-field bg-slate-900"
           placeholder="Your Name"
           required
         />
@@ -25,7 +25,7 @@
           type="email"
           id="email"
           name="email"
-          class="input-field"
+          class="input-field bg-slate-900"
           placeholder="Your Email"
           required
         />
@@ -39,13 +39,13 @@
           id="message"
           name="message"
           rows="4"
-          class="input-field"
+          class="input-field bg-slate-900"
           placeholder="Your Message"
           required
         ></textarea>
       </div>
       <div class="flex items-center justify-end">
-        <button class="submit-button width-" type="submit">Send</button>
+        <button class="w-full hover:bg-slate-500 text-slate-700 font-semibold hover:text-white py-2 px-4 border border-slate-500 hover:border-transparent rounded" type="submit">Send</button>
       </div>
     </form>
   </div>
