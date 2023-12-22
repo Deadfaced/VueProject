@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="navbar">
+    <div class="navbar bg-neutral">
         <div class="flex-1">
             <router-link to="/" class="btn btn-ghost text-xl">Home</router-link>
             <router-link to="/About" class="btn btn-ghost text-xl">About</router-link>
@@ -67,4 +67,9 @@ onBeforeUnmount(() => {
     </div>
 </template>
 
-<style scoped></style>
+<style>
+    .navbar{
+        top: 0;
+        position: fixed;
+    }
+</style>
