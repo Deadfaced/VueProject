@@ -76,9 +76,9 @@ export default {
         if (found) {
           cart = cart.filter(item => item.id !== this.id);
           this.quantity--;
-          this.totalPrice = 0; // Set totalPrice to 0
-          localStorage.setItem('totalPrice', '0'); // Update totalPrice in local storage
-          EventBus.emit('product-quantity-decreased', { totalPrice: this.totalPrice }); // Emit event with updated totalPrice
+          this.totalPrice = 0; 
+          localStorage.setItem('totalPrice', '0'); 
+          EventBus.emit('product-quantity-decreased', { totalPrice: this.totalPrice }); 
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));

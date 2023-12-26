@@ -35,6 +35,7 @@ export default {
     deleteCartItem() {
       EventBus.emit('delete-cart-item', this.id);
       EventBus.emit('update-count');
+      EventBus.emit('update-total-price', this.totalPrice);
     },
   },
   components: {
