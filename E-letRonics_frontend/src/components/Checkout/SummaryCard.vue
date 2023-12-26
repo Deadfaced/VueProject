@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             cartItemCount: parseInt(localStorage.getItem('cartItemCount')) || 0,
-            totalPriceCart: parseInt(localStorage.getItem('totalPrice')) || 0,
+            totalPriceCart: parseFloat(localStorage.getItem('totalPrice')) || 0,
             couponCode: '',
         }
     },
@@ -46,8 +46,15 @@ export default {
             this.totalPriceCart = eventData.totalPrice;
         });
 
-        EventBus.on('product-removed-from-cart', eventData => {
+        EventBus.on('product-removed-from-cart', ({ quantity, price }) => {
+
+            this.cartItemCount -= quantity;
             if (this.cartItemCount < 0) this.cartItemCount = 0;
+
+            price = parseFloat(price);
+            this.totalPriceCart -= price * quantity;
+
+            if (this.totalPriceCart < 0) this.totalPriceCart = 0;
         });
 
         EventBus.on('all-products-removed', () => {

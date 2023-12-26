@@ -97,7 +97,7 @@ export default {
       if (found) {
         found.qty += this.quantity;
       } else {
-        cart.push({ id: this.product.id, qty: this.quantity });
+        cart.push({ id: this.product.id, qty: this.quantity, price: this.product.price }); 
       }
       EventBus.emit('product-added-to-cart', {
         product: this.product,
@@ -107,7 +107,7 @@ export default {
 
       let totalPrice = 0;
       for (let i = 0; i < cart.length; i++) {
-        totalPrice += cart[i].qty * this.product.price;
+        totalPrice += cart[i].qty * cart[i].price; 
       }
       localStorage.setItem('totalPrice', totalPrice.toString());
     },

@@ -45,12 +45,18 @@ export default {
       let found = cart.findIndex(el => el.id === this.id);
 
       if (found !== -1) {
-        let removedItem = cart.splice(found, 1)[0]; 
+        let removedItem = cart.splice(found, 1)[0];
+
         localStorage.setItem('cart', JSON.stringify(cart));
-        EventBus.emit('product-removed-from-cart', { quantity: removedItem.qty, id: this.id });
+
+        let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+        totalPrice -= removedItem.price * removedItem.qty;
+        localStorage.setItem('totalPrice', totalPrice.toString());
+
+        EventBus.emit('product-removed-from-cart', { quantity: removedItem.qty, id: this.id, price: removedItem.price });
       }
     }
-  },
+  }
 };
 </script>
 
