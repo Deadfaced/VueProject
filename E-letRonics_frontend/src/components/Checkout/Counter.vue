@@ -22,7 +22,6 @@ export default {
   },
 
   methods: {
-
     async increaseQuantity() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -35,11 +34,10 @@ export default {
         found.qty++;
         this.cartItemCount++;
         this.totalPrice += parseInt(data.price);
-        EventBus.emit('product-added-to-cart', { quantity: 1, totalPrice: this.totalPrice });
-        console.log(this.totalPrice);
         localStorage.setItem('cart', JSON.stringify(cart));
         localStorage.setItem('totalPrice', this.totalPrice);
         localStorage.setItem('cartItemCount', this.cartItemCount);
+        EventBus.emit('product-added-to-cart', { quantity: 1, totalPrice: this.totalPrice });
       } else {
         alert('Product not found');
       }
@@ -48,36 +46,39 @@ export default {
 
     async decreaseQuantity() {
       if (this.quantity > 1) {
-
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let totalPrice = parseInt(localStorage.getItem('totalPrice')) || 0;
         let cartItemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
 
         let found = cart.find(el => el.id === this.id);
 
-        const response = await fetch(`http://127.0.0.1:3333/products/${found.id}`);
-        const data = await response.json();
         if (found) {
+          const response = await fetch(`http://127.0.0.1:3333/products/${found.id}`);
+          const data = await response.json();
+
           this.quantity--;
           found.qty--;
           cartItemCount--;
           totalPrice -= parseInt(data.price);
           localStorage.setItem('cart', JSON.stringify(cart));
-          localStorage.setItem('totalPrice', totalPrice);
+          localStorage.setItem('totalPrice', totalPrice.toString());
+          this.totalPrice = totalPrice;
+          this.cartItemCount = cartItemCount;
           EventBus.emit('product-quantity-decreased', { price: data.price, totalPrice: totalPrice });
         }
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cartItemCount', cartItemCount.toString());
         EventBus.emit('product-removed-from-cart', { quantity: 1 });
-
       }
       else if (this.quantity === 1) {
-
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let found = cart.find(el => el.id === this.id);
 
         if (found) {
           cart = cart.filter(item => item.id !== this.id);
           this.quantity--;
+          this.totalPrice = 0; // Set totalPrice to 0
+          localStorage.setItem('totalPrice', '0'); // Update totalPrice in local storage
+          EventBus.emit('product-quantity-decreased', { totalPrice: this.totalPrice }); // Emit event with updated totalPrice
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));

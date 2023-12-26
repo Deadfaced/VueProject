@@ -81,7 +81,6 @@ export default {
       let totalPrice = 0;
       for (let i = 0; i < this.shoppingCart.length; i++) {
         totalPrice += parseFloat(this.shoppingCart[i].price) * this.shoppingCart[i].cartQty;
-        console.log(totalPrice);
       }
       localStorage.setItem('totalPrice', totalPrice.toFixed(2));
     },

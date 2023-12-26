@@ -18,60 +18,51 @@
 <script>
 import { fetchData } from '../../Services/apiService';
 import { EventBus } from '../../event-bus.js';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-
-
-
-// const totalPriceCart = Number(localStorage.getItem('totalPrice'));
-// let cartItemCount = ref(parseInt(localStorage.getItem('cartItemCount')));
 
 export default {
-    
     data() {
         return {
             cartItemCount: parseInt(localStorage.getItem('cartItemCount')) || 0,
             totalPriceCart: parseInt(localStorage.getItem('totalPrice')) || 0,
             couponCode: '',
-            totalPrice: 0,
-            cartQty: 0,
         }
     },
-    mounted(){
-         EventBus.on('product-added-to-cart', eventData => {
+    watch: {
+        cartItemCount(newVal) {
+            localStorage.setItem('cartItemCount', newVal);
+        },
+        totalPriceCart(newVal) {
+            localStorage.setItem('totalPrice', newVal);
+        },
+    },
+    mounted() {
+        EventBus.on('product-added-to-cart', eventData => {
             this.cartItemCount += eventData.quantity;
-            this.totalPrice += eventData.totalPrice;
-            console.log(eventData.quantity);
-            console.log(eventData.totalPrice);
-            localStorage.setItem('cartItemCount', this.cartItemCount.toString());
-            localStorage.setItem('totalPrice', this.totalPrice.toString());
+            this.totalPriceCart = eventData.totalPrice;
         });
-    
+
+        EventBus.on('product-quantity-decreased', eventData => {
+            this.cartItemCount--;
+            this.totalPriceCart = eventData.totalPrice;
+        });
+
         EventBus.on('product-removed-from-cart', eventData => {
-            this.cartItemCount -= eventData.quantity;
-            if (cartItemCount < 0) cartItemCount = 0;
-            localStorage.setItem('cartItemCount', this.cartItemCount.toString());
+            if (this.cartItemCount < 0) this.cartItemCount = 0;
         });
-    
+
         EventBus.on('all-products-removed', () => {
             this.cartItemCount = 0;
-            localStorage.setItem('cartItemCount', '0');
         });
-    
+
         EventBus.on('update-cart-count', (updatedItemCount) => {
             this.cartItemCount = updatedItemCount;
         });
     },
-    
     beforeUnmount() {
         EventBus.off('product-added-to-cart');
         EventBus.off('product-removed-from-cart');
         EventBus.off('all-products-removed');
         EventBus.off('update-cart-count');
-    },
-    watch: {
-        totalPrice(newVal) {
-            localStorage.setItem('totalPrice', newVal);
-        },
     },
     methods: {
         async checkCoupon() {
