@@ -90,6 +90,11 @@ export default {
     },
     methods: {
         async checkCoupon() {
+            if (this.discountPercentage > 0) {
+                alert('A coupon has already been applied. You can only apply one coupon.');
+                return;
+            }
+
             try {
                 const response = await fetchData('http://localhost:3333/check-coupon', { couponCode: this.couponCode }, 'post');
                 if (response.success) {
