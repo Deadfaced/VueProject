@@ -53,11 +53,15 @@ export default {
         EventBus.on('product-added-to-cart', eventData => {
             this.cartItemCount += eventData.quantity;
             this.totalPriceCart = eventData.totalPrice;
+            this.discountPercentage = 0;
+            this.discountValue = 0;
         });
 
         EventBus.on('product-quantity-decreased', eventData => {
             this.cartItemCount--;
             this.totalPriceCart = eventData.totalPrice;
+            this.discountPercentage = 0;
+            this.discountValue = 0;
         });
 
         EventBus.on('product-removed-from-cart', ({ quantity, price }) => {
@@ -96,7 +100,6 @@ export default {
                     this.discountPercentage = response.discount;
                     this.discountValue = discountAmount.toFixed(2);
                     EventBus.emit('total-price-updated', this.totalPriceCart);
-                    console.log(this.couponCode);
                     localStorage.setItem('couponCode', this.couponCode);
                     EventBus.emit('coupon-applied-successfully');
                 } else {

@@ -38,10 +38,13 @@ export default {
         localStorage.setItem('totalPrice', this.totalPrice);
         localStorage.setItem('cartItemCount', this.cartItemCount);
         EventBus.emit('product-added-to-cart', { quantity: 1, totalPrice: this.totalPrice });
+
+        localStorage.removeItem('couponCode');
+        localStorage.removeItem('discountPercentage');
+        localStorage.removeItem('discountValue');
       } else {
         alert('Product not found');
       }
-
     },
 
     async decreaseQuantity() {
@@ -65,6 +68,10 @@ export default {
           this.totalPrice = totalPrice;
           this.cartItemCount = cartItemCount;
           EventBus.emit('product-quantity-decreased', { quantity: 1, price: data.price, totalPrice: totalPrice });
+
+          localStorage.removeItem('couponCode');
+          localStorage.removeItem('discountPercentage');
+          localStorage.removeItem('discountValue');
         }
         localStorage.setItem('cartItemCount', cartItemCount.toString());
       }
@@ -82,6 +89,10 @@ export default {
           this.totalPrice = 0;
           localStorage.setItem('totalPrice', '0');
           EventBus.emit('product-quantity-decreased', { quantity: 1, totalPrice: this.totalPrice });
+
+          localStorage.removeItem('couponCode');
+          localStorage.removeItem('discountPercentage');
+          localStorage.removeItem('discountValue');
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
