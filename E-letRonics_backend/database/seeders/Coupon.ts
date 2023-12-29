@@ -38,7 +38,7 @@ export default class extends BaseSeeder {
         currentDate.minus({ months: maxMonths, weeks: maxWeeks }),
         currentDate
       );
-      const validUntil = validFrom.plus({ months: 1, weeks: 2 }); // 1 month and 2 weeks period
+      const validUntil = currentDate.plus({ months: 1, weeks: 2 }); // 1 month and 2 weeks period
 
       coupons.push({
         code,
