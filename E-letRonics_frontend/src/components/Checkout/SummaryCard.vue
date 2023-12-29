@@ -3,6 +3,8 @@
         <p class="mb-6 text-2xl font-medium">Summary</p>
         <p class="mb-6">Total Articles: {{ cartItemCount }}</p>
         <hr class="my-6 border-t">
+        <p v-if="discountPercentage" class="mt-6 mb-6">Discount Percentage: {{ discountPercentage }}%</p>
+        <p v-if="discountValue" class="mt-6 mb-6">Discount Value: {{ discountValue }}€</p>
         <p class="mt-6 mb-6">Total Payable: {{ totalPriceCart }}€</p>
         <div class="flex w-[20rem] rounded bg-white" x-data="{ search: '' }">
             <form @submit.prevent="checkCoupon">
@@ -11,7 +13,8 @@
                 <button type="submit" class="m-2 rounded px-4 py-2 font-semibold text-gray-100 bg-blue-500">Search</button>
             </form>
         </div>
-        <button class="w-full rounded-xl bg-green-600 px-4 py-3 my-4 text-xl font-medium text-white">Payment</button>
+        <button @click="checkout"
+            class="w-full rounded-xl bg-green-600 px-4 py-3 my-4 text-xl font-medium text-white">Payment</button>
     </div>
 </template>
 
@@ -24,7 +27,9 @@ export default {
         return {
             cartItemCount: parseInt(localStorage.getItem('cartItemCount')) || 0,
             totalPriceCart: parseFloat(localStorage.getItem('totalPrice')) || 0,
-            couponCode: '',
+            couponCode: localStorage.getItem('couponCode') || '',
+            discountPercentage: parseFloat(localStorage.getItem('discountPercentage')) || 0,
+            discountValue: parseFloat(localStorage.getItem('discountValue')) || 0,
         }
     },
     watch: {
@@ -33,6 +38,15 @@ export default {
         },
         totalPriceCart(newVal) {
             localStorage.setItem('totalPrice', newVal);
+        },
+        discountPercentage(newVal) {
+            localStorage.setItem('discountPercentage', newVal);
+        },
+        discountValue(newVal) {
+            localStorage.setItem('discountValue', newVal);
+        },
+        couponCode(newVal) {
+            localStorage.setItem('couponCode', newVal);
         },
     },
     mounted() {
@@ -47,7 +61,6 @@ export default {
         });
 
         EventBus.on('product-removed-from-cart', ({ quantity, price }) => {
-
             this.cartItemCount -= quantity;
             if (this.cartItemCount < 0) this.cartItemCount = 0;
 
@@ -76,18 +89,39 @@ export default {
             try {
                 const response = await fetchData('http://localhost:3333/check-coupon', { couponCode: this.couponCode }, 'post');
                 if (response.success) {
-
-                    const totalPriceNumber = Number(this.totalPrice.replace('€', ''));
+                    const totalPriceNumber = this.totalPriceCart;
                     const discountAmount = totalPriceNumber * response.discount / 100;
                     const newTotalPrice = totalPriceNumber - discountAmount;
-                    this.totalPrice = newTotalPrice.toFixed(2) + "€";
-                    EventBus.$emit('total-price-updated', this.totalPrice);
+                    this.totalPriceCart = newTotalPrice.toFixed(2);
+                    this.discountPercentage = response.discount;
+                    this.discountValue = discountAmount.toFixed(2);
+                    EventBus.emit('total-price-updated', this.totalPriceCart);
+                    console.log(this.couponCode);
+                    localStorage.setItem('couponCode', this.couponCode);
                     EventBus.emit('coupon-applied-successfully');
                 } else {
                     EventBus.emit('coupon-applied-failed');
                 }
             } catch (error) {
                 EventBus.emit('coupon-applied-failed');
+            }
+        },
+
+        async checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const products = cart.map(item => ({ id: item.id, quantity: item.qty }));
+            const coupon = localStorage.getItem('couponCode') || '';
+
+            try {
+                const response = await fetchData('http://localhost:3333/checkout', { products, coupon }, 'post');
+                console.log(response);
+                if (response.success) {
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            } catch (error) {
+                alert('An error occurred during checkout.');
             }
         },
     },
