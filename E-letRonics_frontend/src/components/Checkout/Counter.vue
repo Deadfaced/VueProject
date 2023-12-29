@@ -64,24 +64,28 @@ export default {
           localStorage.setItem('totalPrice', totalPrice.toString());
           this.totalPrice = totalPrice;
           this.cartItemCount = cartItemCount;
-          EventBus.emit('product-quantity-decreased', { price: data.price, totalPrice: totalPrice });
+          EventBus.emit('product-quantity-decreased', { quantity: 1, price: data.price, totalPrice: totalPrice });
         }
         localStorage.setItem('cartItemCount', cartItemCount.toString());
-        EventBus.emit('product-removed-from-cart', { quantity: 1 });
       }
       else if (this.quantity === 1) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalPrice = parseInt(localStorage.getItem('totalPrice')) || 0;
+        let cartItemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
+
         let found = cart.find(el => el.id === this.id);
 
         if (found) {
           cart = cart.filter(item => item.id !== this.id);
           this.quantity--;
-          this.totalPrice = 0; 
-          localStorage.setItem('totalPrice', '0'); 
-          EventBus.emit('product-quantity-decreased', { totalPrice: this.totalPrice }); 
+          cartItemCount--;
+          this.totalPrice = 0;
+          localStorage.setItem('totalPrice', '0');
+          EventBus.emit('product-quantity-decreased', { quantity: 1, totalPrice: this.totalPrice });
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cartItemCount', cartItemCount.toString());
         EventBus.emit('product-removed-from-cart', { quantity: 1, id: this.id });
       }
     },

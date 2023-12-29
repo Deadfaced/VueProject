@@ -6,15 +6,19 @@ import EventBus from '../../event-bus';
 const showSideCart = ref(false);
 const cartItemCount = ref(parseInt(localStorage.getItem('cartItemCount')) || 0);
 
-
 function toggleSideCart() {
     showSideCart.value = !showSideCart.value;
-
 };
 
 onMounted(() => {
     EventBus.on('product-added-to-cart', eventData => {
         cartItemCount.value += eventData.quantity;
+        localStorage.setItem('cartItemCount', cartItemCount.value.toString());
+    });
+
+    EventBus.on('product-quantity-decreased', eventData => {
+        cartItemCount.value--;
+        if (cartItemCount.value < 0) cartItemCount.value = 0;
         localStorage.setItem('cartItemCount', cartItemCount.value.toString());
     });
 
@@ -30,7 +34,7 @@ onMounted(() => {
     });
 
     EventBus.on('update-cart-count', (updatedItemCount) => {
-      cartItemCount.value = updatedItemCount;
+        cartItemCount.value = updatedItemCount;
     });
 });
 
@@ -39,6 +43,7 @@ onBeforeUnmount(() => {
     EventBus.off('product-removed-from-cart');
     EventBus.off('all-products-removed');
     EventBus.off('update-cart-count');
+    EventBus.off('product-quantity-decreased');
 });
 </script>
 
@@ -68,9 +73,9 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-    .navbar{
-        top: 0;
-        position: fixed;
-        z-index: 1000;
-    }
+.navbar {
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+}
 </style>
