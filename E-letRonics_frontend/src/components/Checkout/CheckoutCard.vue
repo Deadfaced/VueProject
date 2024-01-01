@@ -53,7 +53,13 @@ export default {
         totalPrice -= removedItem.price * removedItem.qty;
         localStorage.setItem('totalPrice', totalPrice.toString());
 
-        EventBus.emit('product-removed-from-cart', { quantity: removedItem.qty, id: this.id, price: removedItem.price });
+        EventBus.emit('product-removed-from-cart', {
+          quantity: removedItem.qty,
+          id: this.id,
+          price: removedItem.price,
+        });
+        const failureMessage = `Product "${this.name}" removed from cart (Not Purchased)`;
+        EventBus.emit('product-removed-from-cart-failed', `Product "${this.name}" removed from cart (Not Purchased)`);
       }
     }
   }

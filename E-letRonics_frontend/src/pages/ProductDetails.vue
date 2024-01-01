@@ -4,7 +4,7 @@
     <div class="flex flex-col items-center" v-if="product">
       <div class="flex-1">
         <h2 class="text-3xl font-bold text-center mb-10 mx-10">{{ product.name }}</h2>
-        <div class="mx-80">
+        <div class="lg:mx-60 sm:mx-20">
           <img :src="product.image || 'https://example.com/placeholder.jpg'" alt="Product Image"
             class="rounded-md shadow-md w-20 h-20 lg:w-1/2 lg:h-auto mx-auto">
         </div>

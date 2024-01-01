@@ -7,13 +7,15 @@ import 'vue3-toastify/dist/index.css';
 import { EventBus } from '../../event-bus.js';
 
 export default {
-  methods: {
-    showToast(message) {
-      toast.error(message, this.getToastOptions());
+  props: {
+    failureMessage: {
+      type: String,
+      default: '',
     },
-    couponToast() {
-      const message = `Coupon does not exist!`;
-      toast.error(message, this.getToastOptions());
+  },
+  methods: {
+    showToast() {
+      toast.error(this.failureMessage, this.getToastOptions());
     },
     getToastOptions() {
       return {
@@ -32,12 +34,16 @@ export default {
         theme: 'dark',
       };
     },
+    couponToast() {
+      const message = `Coupon does not exist!`;
+      toast.error(message, this.getToastOptions());
+    },
   },
   created() {
-    EventBus.on('coupon-applied-failed', this.couponToast);
+    EventBus.on('product-removed-from-cart-failed', this.showToast);
   },
   beforeUnmount() {
-    EventBus.off('coupon-applied-failed', this.couponToast);
+    EventBus.off('product-removed-from-cart-failed', this.showToast);
   },
 };
 </script>
