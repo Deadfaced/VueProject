@@ -14,7 +14,7 @@
         </div>
         <div class="mt-8 flex flex-col sm:flex-row">
           <Counter :id="id" :qty="cartQty"></Counter>
-          <button @click="removeFromCart"
+          <button @click="removeFromCart (id)"
             class="ml-auto mb-4 mr-2 cursor-pointer rounded-md border px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-rose-500 hover:text-white ">
             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
               <path fill="#ffffff"
@@ -29,39 +29,22 @@
 
 <script>
 import Counter from './Counter.vue';
-import { EventBus } from '../../event-bus.js';
+import { useCartStore } from '../../CartStorePinia.js';
+
 export default {
   components: { Counter },
   props: ['id', 'image', 'name', 'description', 'price', 'cartQty', 'totalPrice'],
-  data() {
-    return {
+  setup() {
+    const cartStore = useCartStore();
 
+    const removeFromCart = (id) => {
+      cartStore.deleteCartItem(id);
+    };
+
+    return {
+      removeFromCart,
     };
   },
-  methods: {
-    removeFromCart() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-      let found = cart.findIndex(el => el.id === this.id);
-
-      if (found !== -1) {
-        let removedItem = cart.splice(found, 1)[0];
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
-        totalPrice -= removedItem.price * removedItem.qty;
-        localStorage.setItem('totalPrice', totalPrice.toString());
-
-        EventBus.emit('product-removed-from-cart', {
-            quantity: removedItem.qty,
-            id: this.id,
-            price: removedItem.price,
-        });
-        EventBus.emit('product-removed-from-cart-failed', `Retirou o produto ${this.name} do carrinho`);
-      }
-    }
-  }
 };
 </script>
 

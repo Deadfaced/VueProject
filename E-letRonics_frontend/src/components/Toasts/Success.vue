@@ -37,12 +37,12 @@ export default {
     },
   },
   created() {
-    EventBus.on('product-added-to-cart', this.showToast);
     EventBus.on('coupon-applied-successfully', this.couponToast);
+    EventBus.on('product-added-to-cart', this.showToast);
   },
   beforeUnmount() {
-    EventBus.off('product-added-to-cart', this.showToast);
     EventBus.off('coupon-applied-successfully', this.couponToast);
+    EventBus.off('product-added-to-cart', this.showToast);
   },
 };
 </script>
