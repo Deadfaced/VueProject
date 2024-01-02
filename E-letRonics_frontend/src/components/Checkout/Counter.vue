@@ -10,6 +10,7 @@
 
 <script>
 import { useCartStore } from '../../CartStorePinia.js'; 
+import { EventBus } from '../../event-bus.js';
 
 export default {
   props: ['qty', 'id'],
@@ -34,7 +35,6 @@ export default {
         localStorage.setItem('cart', JSON.stringify(cartStore.cart));
         cartStore.clearCoupon();
         cartStore.fetchCartItems();
-
       } else {
         alert('Product not found');
       }

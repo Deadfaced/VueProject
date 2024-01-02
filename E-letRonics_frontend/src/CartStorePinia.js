@@ -70,6 +70,8 @@ export const useCartStore = defineStore({
             this.totalPrice += product.price * quantity;
             localStorage.setItem('totalPrice', this.totalPrice.toString());
         },
+
+        
         applyCoupon(couponCode, discountPercentage) {
             this.couponCode = couponCode;
             this.discountPercentage = discountPercentage;

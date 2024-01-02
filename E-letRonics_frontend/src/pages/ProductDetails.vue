@@ -72,7 +72,8 @@
 <script>
 import Success from '../components/Toasts/Success.vue';
 import ProductList from '../components/Product/ProductList.vue';
-import { useCartStore } from '../CartStorePinia.js'; 
+import { useCartStore } from '../CartStorePinia.js';
+import { EventBus } from '../event-bus.js';
 
 export default {
   data() {
@@ -82,7 +83,7 @@ export default {
     };
   },
   setup() {
-    const cartStore = useCartStore(); 
+    const cartStore = useCartStore();
     return { cartStore };
   },
   methods: {
@@ -95,7 +96,8 @@ export default {
       }
     },
     addToCart() {
-      this.cartStore.addToCart(this.product, this.quantity); 
+      this.cartStore.addToCart(this.product, this.quantity);
+      EventBus.emit('product-added-to-cart', { product: this.product, quantity: this.quantity });
     },
 
     async fetchProductDetails() {
