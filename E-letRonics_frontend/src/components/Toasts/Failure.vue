@@ -9,9 +9,9 @@ import { EventBus } from '../../event-bus.js';
 export default {
   props: {
     failureMessage: {
-      type: String,
-      default: '',
-    },
+    type: String,
+    default: 'Successfully removed from cart',
+  },
   },
   methods: {
     showToast() {

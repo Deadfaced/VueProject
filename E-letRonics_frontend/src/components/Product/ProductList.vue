@@ -1,12 +1,12 @@
-
-  <template>
-    <div>
-      <h1 class="text-3xl font-bold text-center mt-8 md:my-10">Products that you might not know</h1>
-      <div class="flex flex-wrap justify-center  md:my-10">
-        <Product v-for="product in products" :key="product.id" :item="product" class="mt-5" />
-      </div>
+<template>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center my-8">Products that you might not know</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <Product v-for="product in products" :key="product.id" :item="product" class="mb-8" />
     </div>
-  </template>
+  </div>
+</template>
+
   <script>
   import Product from './Product.vue';
   import { fetchData } from '../../Services/apiService.js';

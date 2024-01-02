@@ -1,10 +1,10 @@
 <template>
   <div class="mx-4 rounded-md border-gray-100 text-gray-600 shadow-xl">
     <div class="relative flex h-full flex-col text-gray-600 md:flex-row">
-      <div class="mx-auto flex items-center px-5 pt-1 md:p-8">
-        <img class="block h-auto max-h-48 rounded-md shadow-lg" :src="image" alt="Shop image" />
+      <div class="mx-10 flex items">
+        <img class="my-20block rounded-md shadow-lg" :src="image" alt="Shop image" />
       </div>
-      <div class="relative p-1 md:w-4/6">
+      <div class="relative">
         <div class="flex flex-col md:flex-row">
           <h2 class="mb-2 text-2xl font-black text-white">{{ name }}</h2>
         </div>
@@ -54,12 +54,11 @@ export default {
         localStorage.setItem('totalPrice', totalPrice.toString());
 
         EventBus.emit('product-removed-from-cart', {
-          quantity: removedItem.qty,
-          id: this.id,
-          price: removedItem.price,
+            quantity: removedItem.qty,
+            id: this.id,
+            price: removedItem.price,
         });
-        const failureMessage = `Product "${this.name}" removed from cart (Not Purchased)`;
-        EventBus.emit('product-removed-from-cart-failed', `Product "${this.name}" removed from cart (Not Purchased)`);
+        EventBus.emit('product-removed-from-cart-failed', `Retirou o produto ${this.name} do carrinho`);
       }
     }
   }
