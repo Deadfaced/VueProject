@@ -3,7 +3,7 @@
     <h2 class="text-2xl font-semibold text-center">Contact Us</h2>
     <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-5 mt-5 max-w-md mx-auto">
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+        <label class="block text-slate-700 text-sm font-bold mb-2" for="name">
           Name
         </label>
         <input
@@ -17,7 +17,7 @@
         />
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        <label class="block text-slate-700 text-sm font-bold mb-2" for="email">
           Email
         </label>
         <input
@@ -31,7 +31,7 @@
         />
       </div>
       <div class="mb-6">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
+        <label class="block text-slate-700 text-sm font-bold mb-2" for="message">
           Message
         </label>
         <textarea
@@ -86,6 +86,8 @@ export default {
 <style scoped>
 .input-field {
   border: 1px solid #ccc;
+  background-color: #fff;
+  color: grey;
   border-radius: 4px;
   width: 100%;
   padding: 8px;

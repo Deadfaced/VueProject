@@ -2,7 +2,7 @@
   <div class="mx-4 rounded-md border-gray-100 text-gray-600 shadow-xl">
     <div class="relative flex h-full flex-col text-gray-600 md:flex-row">
       <div class="mx-10 flex items">
-        <img class="my-20block rounded-md shadow-lg" :src="image" alt="Shop image" />
+        <img class="my-20 block rounded-md shadow-lg" :src="image" alt="Shop image" />
       </div>
       <div class="relative">
         <div class="flex flex-col md:flex-row">
