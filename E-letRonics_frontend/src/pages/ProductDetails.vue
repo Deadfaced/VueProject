@@ -71,16 +71,19 @@
 
 <script>
 import Success from '../components/Toasts/Success.vue';
-import EventBus from '../event-bus.js';
 import ProductList from '../components/Product/ProductList.vue';
+import { useCartStore } from '../CartStorePinia.js'; 
 
 export default {
   data() {
     return {
       quantity: 1,
       product: Object,
-
     };
+  },
+  setup() {
+    const cartStore = useCartStore(); 
+    return { cartStore };
   },
   methods: {
     increaseQuantity() {
@@ -92,25 +95,9 @@ export default {
       }
     },
     addToCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      let found = cart.find((el) => el.id === this.product.id);
-      if (found) {
-        found.qty += this.quantity;
-      } else {
-        cart.push({ id: this.product.id, qty: this.quantity, price: this.product.price }); 
-      }
-      EventBus.emit('product-added-to-cart', {
-        product: this.product,
-        quantity: this.quantity,
-      });
-      localStorage.setItem('cart', JSON.stringify(cart));
-
-      let totalPrice = 0;
-      for (let i = 0; i < cart.length; i++) {
-        totalPrice += cart[i].qty * cart[i].price; 
-      }
-      localStorage.setItem('totalPrice', totalPrice.toString());
+      this.cartStore.addToCart(this.product, this.quantity); 
     },
+
     async fetchProductDetails() {
       try {
         const productId = this.$route.params.id;

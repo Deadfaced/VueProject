@@ -7,7 +7,7 @@
       <h2 class="card-title text-sm">Unit Cost: {{ price }}</h2>
       <h2 class="card-title text-sm">{{ availability }}</h2>
       <h2 class="card-title text-sm">Total: {{ totalPrice }}</h2>
-      <button @click="deleteCartItem"
+      <button @click="deleteCartItem (id)"
         class="ml-auto mb-4 mr-2 cursor-pointer rounded-md border px-8 text-center text-gray-500 transition duration-150 ease-in-out hover:translate-y-1 hover:bg-rose-500 hover:text-white ">
         <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
           <path fill="#ffffff"
@@ -21,27 +21,16 @@
 
   
 
-<script>
-import Counter from '../Checkout/Counter.vue';
-import EventBus from '../../event-bus';
-export default {
-  props: ['id', 'image', 'name', 'cartQty', 'price', 'availability', 'totalPrice'],
-  data() {
-    return {
+<script setup>
+import { useCartStore } from '../../CartStorePinia.js'; 
 
-    };
-  },
-  methods: {
-    deleteCartItem() {
-      EventBus.emit('delete-cart-item', this.id);
-      EventBus.emit('update-count');
-      EventBus.emit('update-total-price', this.totalPrice);
-    },
-  },
-  components: {
-    Counter
-  },
-}
+const cartStore = useCartStore(); 
+
+defineProps(['id', 'image', 'name', 'cartQty', 'price', 'availability', 'totalPrice', 'item']);
+
+function deleteCartItem(itemId) {
+  cartStore.deleteCartItem(itemId);
+};
 </script>
 
 <style></style>

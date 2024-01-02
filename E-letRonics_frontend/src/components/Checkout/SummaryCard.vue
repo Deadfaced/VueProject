@@ -1,11 +1,11 @@
 <template>
     <div class="mx-4 my-10 rounded-xl px-6 py-8 text-white shadow-xl border-gray-100">
         <p class="mb-6 text-2xl font-medium">Summary</p>
-        <p class="mb-6">Total Articles: {{ cartItemCount }}</p>
+        <p class="mb-6">Total Articles: {{ cartStore.cartItemCount }}</p>
         <hr class="my-6 border-t">
-        <p v-if="discountPercentage" class="mt-6 mb-6">Discount Percentage: {{ discountPercentage }}%</p>
-        <p v-if="discountValue" class="mt-6 mb-6">Discount Value: {{ discountValue }}€</p>
-        <p class="mt-6 mb-6">Total Payable: {{ totalPriceCart }}€</p>
+        <p v-if="cartStore.discountPercentage" class="mt-6 mb-6">Discount Percentage: {{ cartStore.discountPercentage }}%</p>
+        <p v-if="cartStore.discountValue" class="mt-6 mb-6">Discount Value: {{ cartStore.discountValue }}€</p>
+        <p class="mt-6 mb-6">Total Payable: {{ cartStore.totalPriceCart }}€</p>
         <div class="flex w-[20rem] rounded bg-white" x-data="{ search: '' }">
             <form @submit.prevent="checkCoupon">
                 <input type="text" class="w-full border-none bg-transparent px-5 text-gray-900 focus:outline-none"
@@ -20,105 +20,37 @@
 
 <script>
 import { fetchData } from '../../Services/apiService';
-import { EventBus } from '../../event-bus.js';
+import { useCartStore } from '../../CartStorePinia.js';
+import { ref, watch } from 'vue';
 
 export default {
-    data() {
-        return {
-            cartItemCount: parseInt(localStorage.getItem('cartItemCount')) || 0,
-            totalPriceCart: parseFloat(localStorage.getItem('totalPrice')) || 0,
-            couponCode: localStorage.getItem('couponCode') || '',
-            discountPercentage: parseFloat(localStorage.getItem('discountPercentage')) || 0,
-            discountValue: parseFloat(localStorage.getItem('discountValue')) || 0,
-        }
-    },
-    watch: {
-        cartItemCount(newVal) {
-            localStorage.setItem('cartItemCount', newVal);
-        },
-        totalPriceCart(newVal) {
-            localStorage.setItem('totalPrice', newVal);
-        },
-        discountPercentage(newVal) {
-            localStorage.setItem('discountPercentage', newVal);
-        },
-        discountValue(newVal) {
-            localStorage.setItem('discountValue', newVal);
-        },
-        couponCode(newVal) {
-            localStorage.setItem('couponCode', newVal);
-        },
-    },
-    mounted() {
-        EventBus.on('product-added-to-cart', eventData => {
-            this.cartItemCount += eventData.quantity;
-            this.totalPriceCart = eventData.totalPrice;
-            this.discountPercentage = 0;
-            this.discountValue = 0;
+    setup() {
+        const cartStore = useCartStore();
+
+        const couponCode = ref(cartStore.couponCode);
+
+        watch(() => cartStore.couponCode, (newVal) => {
+            couponCode.value = newVal;
         });
 
-        EventBus.on('product-quantity-decreased', eventData => {
-            this.cartItemCount--;
-            this.totalPriceCart = eventData.totalPrice;
-            this.discountPercentage = 0;
-            this.discountValue = 0;
-        });
-
-        EventBus.on('product-removed-from-cart', ({ quantity, price }) => {
-            this.cartItemCount -= quantity;
-            if (this.cartItemCount < 0) this.cartItemCount = 0;
-
-            price = parseFloat(price);
-            this.totalPriceCart -= price * quantity;
-
-            if (this.totalPriceCart < 0) this.totalPriceCart = 0;
-        });
-
-        EventBus.on('all-products-removed', () => {
-            this.cartItemCount = 0;
-        });
-
-        EventBus.on('update-cart-count', (updatedItemCount) => {
-            this.cartItemCount = updatedItemCount;
-        });
-    },
-    beforeUnmount() {
-        EventBus.off('product-added-to-cart');
-        EventBus.off('product-removed-from-cart');
-        EventBus.off('all-products-removed');
-        EventBus.off('update-cart-count');
-    },
-    methods: {
-        async checkCoupon() {
-            if (this.discountPercentage > 0) {
-                alert('A coupon has already been applied. You can only apply one coupon.');
-                return;
-            }
+        async function checkCoupon() {
 
             try {
-                const response = await fetchData('http://localhost:3333/check-coupon', { couponCode: this.couponCode }, 'post');
+                const response = await fetchData('http://localhost:3333/check-coupon', { couponCode: couponCode.value }, 'post');
                 if (response.success) {
-                    const totalPriceNumber = this.totalPriceCart;
-                    const discountAmount = totalPriceNumber * response.discount / 100;
-                    const newTotalPrice = totalPriceNumber - discountAmount;
-                    this.totalPriceCart = newTotalPrice.toFixed(2);
-                    this.discountPercentage = response.discount;
-                    this.discountValue = discountAmount.toFixed(2);
-                    EventBus.emit('total-price-updated', this.totalPriceCart);
-                    localStorage.setItem('couponCode', this.couponCode);
-                    EventBus.emit('coupon-applied-successfully');
+                    cartStore.applyCoupon(couponCode, response.discount);
                 } else {
-                    EventBus.emit('coupon-applied-failed');
+                    alert(response.message);
                 }
             } catch (error) {
-                EventBus.emit('coupon-applied-failed');
+                alert('An error occurred during checkout.');
             }
-        },
+        }
 
-        async checkout() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        async function checkout() {
+            const cart = cartStore.cart;
             const products = cart.map(item => ({ id: item.id, quantity: item.qty }));
-            const coupon = localStorage.getItem('couponCode') || '';
+            const coupon = cartStore.couponCode;
 
             try {
                 const response = await fetchData('http://localhost:3333/checkout', { products, coupon }, 'post');
@@ -131,7 +63,14 @@ export default {
             } catch (error) {
                 alert('An error occurred during checkout.');
             }
-        },
+        }
+
+        return {
+            checkCoupon,
+            checkout,
+            cartStore, 
+            couponCode, 
+        };
     },
-}
+};
 </script>

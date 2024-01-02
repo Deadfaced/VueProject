@@ -1,72 +1,16 @@
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
 import CardCart from './CardCart.vue';
-import { EventBus } from '../../event-bus.js';
+import { useCartStore } from '../../CartStorePinia.js';
 
-export default {
-  components: { CardCart },
-  props: ['shoppingCart'],
-  data() {
-    return {
-      shoppingCart: [{}],
-      showOverlay: true,
-    };
-  },
-  setup() {
-    return {};
-  },
-  async mounted() {
-    const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-    this.shoppingCart = [];
-    cartList.forEach(async element => {
-      const response = await fetch(`http://127.0.0.1:3333/products/${element.id}`);
-      const data = await response.json();
-      this.shoppingCart.push({
-        id: element.id,
-        image: data.image,
-        name: data.name,
-        cartQty: element.qty,
-        price: data.price + "€",
-        availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
-        totalPrice: (data.price * element.qty).toFixed(2) + "€",
-      });
-    });
+const cartStore = useCartStore();
 
-    EventBus.on('update-total-price', (itemTotalPrice) => {
-      let currentTotalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
-      currentTotalPrice -= parseFloat(itemTotalPrice);
-      localStorage.setItem('totalPrice', currentTotalPrice.toFixed(2).toString());
-    });
+onMounted(async () => {
+  await cartStore.fetchCartItems();
+});
 
-    EventBus.on('close-sidecart', () => {
-      this.$emit('close');
-    });
-
-    EventBus.on('delete-cart-item', (itemId) => {
-      const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-      const updatedCart = cartList.filter(item => item.id !== itemId);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-      let newCardItemCount = 0;
-      for (const item of updatedCart) {
-        newCardItemCount += item.qty;
-      }
-      localStorage.setItem('cartItemCount', newCardItemCount.toString());
-
-      this.shoppingCart = this.shoppingCart.filter(item => item.id !== itemId);
-    });
-
-    EventBus.on('update-count', () => {
-      const updatedItemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
-      EventBus.emit('update-cart-count', updatedItemCount);
-    });
-  },
-
-  beforeUnmount() {
-    EventBus.off('close-sidecart');
-    EventBus.off('delete-cart-item');
-    EventBus.off('update-count');
-    EventBus.off('update-total-price');
-  },
+function deleteCartItem(itemId) {
+  cartStore.deleteCartItem(itemId);
 };
 </script>
     
@@ -93,22 +37,24 @@ export default {
           </h2>
           <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping over €50</h3>
         </div>
-        <div v-if="shoppingCart.length === 0" class="flex items-center justify-center">
+        <div v-if="cartStore.cart.length === 0" class="flex items-center justify-center">
           <img width="80"
             src="https://loja.forestpaper.com.br/skin/frontend/k13/default/K13/overwrite/checkout/cart/img/empty-cart.png"
             alt="Empty Cart" class="mt-4">
         </div>
         <ul>
           <li>
-            <card-cart v-for="item in shoppingCart" :key="item.id" :id="item.id" :image="item.image" :name="item.name"
-              :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :total-price="item.totalPrice"
-              :item="item"></card-cart>
+            <card-cart v-if="cartStore.CartItemProperties.length > 0" v-for="item in cartStore.CartItemProperties" :key="item.id" :id="item.id" :image="item.image" :name="item.name"
+              :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :totalPrice="item.totalPrice" @delete="deleteCartItem">
+            </card-cart>
           </li>
         </ul>
       </div>
       <div class="ml-auto flex items-center justify-center py-6 h-24">
-        <router-link v-if="shoppingCart.length > 0" :to="{ name: 'Checkout', params: { shoppingCart: shoppingCart } }"
-          class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-4">Checkout</router-link>
+        <router-link v-if="cartStore.cart.length > 0" :to="{ name: 'Checkout'}"
+          class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-4">
+          Checkout
+        </router-link>
       </div>
     </div>
   </div>
