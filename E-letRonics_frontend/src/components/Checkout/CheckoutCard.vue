@@ -8,7 +8,7 @@
         <div class="flex flex-col md:flex-row">
           <h2 class="mb-2 text-2xl font-black text-white">{{ name }}</h2>
         </div>
-        <p class="mt-3 mr-2 font-sans text-base tracking-normal text-white">{{ description }}</p>
+        <p class="mt-3 mr-2 font-sans text-base tracking-normal text-white">{{ shortenedDescription }}</p>
         <div class="flex flex-col md:flex-row md:items-end">
           <p class="mt-6 text-4xl text-white">{{ price }}</p>
         </div>
@@ -44,6 +44,14 @@ export default {
     return {
       removeFromCart,
     };
+  },
+  computed: {
+    isLongText() {
+      return this.description.length > 50;
+    },
+    shortenedDescription() {
+      return this.isLongText ? this.description.slice(0, 50) + '...' : this.description;
+    },
   },
 };
 </script>

@@ -33,6 +33,7 @@ export const useCartStore = defineStore({
                     id: element.id,
                     image: data.image,
                     name: data.name,
+                    description: data.description,
                     cartQty: element.qty,
                     price: data.price + "€",
                     availability: data.quantity > 0 ? 'In Stock' : 'Out of Stock',
