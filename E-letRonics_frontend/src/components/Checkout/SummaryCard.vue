@@ -54,7 +54,6 @@ export default {
 
             try {
                 const response = await fetchData('http://localhost:3333/checkout', { products, coupon }, 'post');
-                console.log(response);
                 if (response.success) {
                     alert(response.message);
                     cartStore.clearCart();
