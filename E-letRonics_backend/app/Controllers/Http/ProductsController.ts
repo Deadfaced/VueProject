@@ -48,7 +48,6 @@ export default class ProductsController {
       if (!product) {
         return response.status(404).json({ message: 'Product not found' });
       }
-
       return response.json(product);
     } catch (error) {
       return response.status(500).json({ message: 'Internal Server Error' });

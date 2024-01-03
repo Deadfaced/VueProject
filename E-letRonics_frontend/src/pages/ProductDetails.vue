@@ -3,17 +3,23 @@
     <Success />
     <div v-if="product" class="rounded-lg overflow-hidden">
       <h2 class="text-3xl font-bold my-4">{{ product.name }}</h2>
-        <div class="lg:mx-60 sm:mx-20">
-          <img :src="product.image || 'https://via.placeholder.com/400'"
-           alt="Product Image"
-           class="object-cover object-center w-full h-64 lg:h-auto mx-auto mb-4">
-      
-           <p class="text-gray-600 my-4">{{ product.description }}</p>
+      <div class="lg:mx-60 sm:mx-20">
+        <img :src="product.image || 'https://via.placeholder.com/400'" alt="Product Image"
+          class="object-cover object-center w-full h-64 lg:h-auto mx-auto mb-4">
 
+<<<<<<< Updated upstream
           <div class="flex justify-between mt-4">
             <span class="text-lg font-bold text-3x1">{{ product.price }} €</span>
             <span class="text-lg font-bold text-3x1">Rating: {{ product.rating }}.0</span>
           </div>
+=======
+        <p class="text-gray-600 my-4">{{ product.description }}</p>
+
+        <div class="flex justify-between mt-4">
+          <span class="text-lg font-bold text-3x1 text-yellow-500">{{ product.price }} €</span>
+          <span class="text-lg font-bold text-3x1 text-yellow-500">Rating: {{ product.rating }}.0</span>
+        </div>
+>>>>>>> Stashed changes
 
         <div class="flex items-center justify-end">
           <button @click="decreaseQuantity" class="btn">-</button>
@@ -21,11 +27,11 @@
           <button @click="increaseQuantity" class="btn">+</button>
           <div class="flex ml-4">
             <button @click="addToCart"
-            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mx-5">Add
-            to Cart</button>
+              class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mx-5">Add
+              to Cart</button>
             <router-link to="/Shop"
-            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Back
-            to Products</router-link>
+              class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Back
+              to Products</router-link>
           </div>
         </div>
         <ProductList />
@@ -86,6 +92,7 @@ export default {
   },
   methods: {
     increaseQuantity() {
+      if (this.quantity < this.product.quantity)
       this.quantity += 1;
     },
     decreaseQuantity() {
@@ -94,6 +101,10 @@ export default {
       }
     },
     addToCart() {
+      if (this.quantity > this.product.quantity) {
+        alert('Not enough stock!');
+        return;
+      }
       this.cartStore.addToCart(this.product, this.quantity);
       EventBus.emit('product-added-to-cart', { product: this.product, quantity: this.quantity });
     },

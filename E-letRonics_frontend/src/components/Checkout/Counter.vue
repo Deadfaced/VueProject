@@ -10,12 +10,14 @@
 
 <script>
 import { useCartStore } from '../../CartStorePinia.js'; 
-import { EventBus } from '../../event-bus.js';
+
 
 export default {
   props: ['qty', 'id'],
+
   setup(props) {
     const cartStore = useCartStore(); 
+    let product = {};
 
     async function increaseQuantity() {
       const cart = cartStore.cart;
@@ -23,6 +25,11 @@ export default {
 
       const response = await fetch(`http://127.0.0.1:3333/products/${found.id}`);
       const data = await response.json();
+      product.value = data;
+      if (product.value.quantity === found.qty) {
+        alert('Not enough stock!');
+        return;
+      }
       if (found) {
         cartStore.cart = cart.map(item => {
           if (item.id === props.id) {
