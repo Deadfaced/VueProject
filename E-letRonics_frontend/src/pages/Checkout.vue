@@ -14,7 +14,7 @@
           <button @click="removeAllFromCart" class="bg-gray-700 text-white px-4 py-2 rounded-md mr-4">Empty Cart</button>
         </div>
       </div>
-      <div class="checkout-summary">
+      <div class="checkout-summary bg-neutral shadow-xl">
         <SummaryCard></SummaryCard>
       </div>
     </div>
@@ -72,7 +72,6 @@ onMounted(async () => {
     align-items: center;
 }
 .checkout-summary {
-    background: #2A323C;
     padding: 20px;
     border-radius: 10px;
 }

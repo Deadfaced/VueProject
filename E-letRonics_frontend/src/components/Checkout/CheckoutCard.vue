@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-4 rounded-md border-gray-100 text-gray-600 shadow-xl">
+  <div class="mx-4 rounded-md border-gray-100 text-gray-600 shadow-xl bg-neutral">
     <div class="relative flex h-full flex-col text-gray-600 md:flex-row">
       <div class="mx-10 flex items">
         <img class="my-20 block rounded-md shadow-lg" :src="image" alt="Shop image" />
