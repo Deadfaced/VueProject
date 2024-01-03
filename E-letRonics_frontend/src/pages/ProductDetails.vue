@@ -7,19 +7,10 @@
         <img :src="product.image || 'https://via.placeholder.com/400'" alt="Product Image"
           class="object-cover object-center w-full h-64 lg:h-auto mx-auto mb-4">
 
-<<<<<<< Updated upstream
           <div class="flex justify-between mt-4">
             <span class="text-lg font-bold text-3x1">{{ product.price }} €</span>
             <span class="text-lg font-bold text-3x1">Rating: {{ product.rating }}.0</span>
           </div>
-=======
-        <p class="text-gray-600 my-4">{{ product.description }}</p>
-
-        <div class="flex justify-between mt-4">
-          <span class="text-lg font-bold text-3x1 text-yellow-500">{{ product.price }} €</span>
-          <span class="text-lg font-bold text-3x1 text-yellow-500">Rating: {{ product.rating }}.0</span>
-        </div>
->>>>>>> Stashed changes
 
         <div class="flex items-center justify-end">
           <button @click="decreaseQuantity" class="btn">-</button>
