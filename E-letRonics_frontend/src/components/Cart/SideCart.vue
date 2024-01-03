@@ -24,7 +24,7 @@ function deleteCartItem(itemId) {
           <path d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <div class="pr-4 pb-4 pl-4 overflow-y-auto h-full no-scrollbar">
+      <div class="pr-4 pb-4 pl-4 overflow-y-auto h-full no-scrollbar flex flex-col flex-1">
         <div class="sticky top-0 bg-base-200">
           <h2 class="text-lg font-semibold mb-4 flex items-center justify-center">
             <span class="highlight">Cart</span>
@@ -37,7 +37,7 @@ function deleteCartItem(itemId) {
           </h2>
           <h3 class="pb-2 text-sm flex items-center justify-center sticky top-7 animate-pulse">Free shipping over €50</h3>
         </div>
-        <div v-if="cartStore.cart.length === 0" class="flex items-center justify-center">
+        <div v-if="cartStore.cart.length === 0" class="flex items-center justify-center flex-1">
           <img width="80"
             src="https://loja.forestpaper.com.br/skin/frontend/k13/default/K13/overwrite/checkout/cart/img/empty-cart.png"
             alt="Empty Cart" class="mt-4">
