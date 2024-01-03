@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Hero />
+        <Hero class="fall"/>
         <GridGallery />
         <TestimonialCard />
         <div id="contacts" class></div>
@@ -25,4 +25,19 @@ export default {
 }
 </script>
   
-<style scoped></style>
+<style scoped>
+.fall {
+  animation: fallAnimation 1s ease-out;
+}
+
+@keyframes fallAnimation {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+</style>
