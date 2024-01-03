@@ -57,6 +57,7 @@ export const useCartStore = defineStore({
 
             this.totalPrice -= itemToRemove.price * itemToRemove.qty;
             localStorage.setItem('totalPrice', this.totalPrice.toString());
+            this.clearCoupon();
             this.fetchCartItems();
         },
         addToCart(product, quantity) {
