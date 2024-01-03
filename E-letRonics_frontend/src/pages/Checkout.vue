@@ -2,7 +2,8 @@
   <div class="checkout-container">
     <Success></Success>
     <Failure></Failure>
-    <h2 class="text-4xl text-white mt-8 ml-14">My Cart</h2>
+    <h2 class="text-4xl text-white mt-8 ml-14 font-medium title-font">My Cart</h2>
+    
     <div class="flex justify-center items-start space-x-4 mt-4">
       <div class="flex flex-col">
         
