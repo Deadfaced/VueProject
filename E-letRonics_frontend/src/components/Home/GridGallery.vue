@@ -6,14 +6,14 @@
             </div>
             <div class="container">
                 <div class="grid grid-cols-4 grid-rows-3 gap-3 lg:w-70w lg:h-80h">
-                    <div class=" col-span-2 row-span-2"><img src="../../assets/images/1.jpg"></div>
-                    <div class=""><img src="../../assets/images/2.jpg"></div>
-                    <div class=""><img src="../../assets/images/3.jpg"></div>
-                    <div class=""><img src="../../assets/images/4.jpg"></div>
-                    <div class=""><img src="../../assets/images/5.jpg"></div>
-                    <div class=""><img src="../../assets/images/6.jpg"></div>
-                    <div class=""><img src="../../assets/images/7.jpg"></div>
-                    <div class=" col-span-2"><img src="../../assets/images/8.jpg"></div>
+                    <img src="../../assets/images/1.jpg" class="object-cover h-full w-full col-span-2 row-span-2">
+                    <img src="../../assets/images/2.jpg" class="object-cover h-full w-full">
+                    <img src="../../assets/images/3.jpg" class="object-cover h-full w-full">
+                    <img src="../../assets/images/4.jpg" class="object-cover h-full w-full">
+                    <img src="../../assets/images/5.jpg" class="object-cover h-full w-full">
+                    <img src="../../assets/images/6.jpg" class="object-cover h-full w-full">
+                    <img src="../../assets/images/7.jpg" class="object-cover h-full w-full">
+                    <img src="../../assets/images/8.jpg" class="object-cover h-full w-full col-span-2">
                 </div>
             </div>
         </div>

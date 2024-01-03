@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex mx-8">
         <h2 class="text-2xl font-semibold text-center mb-8">Testimonials</h2>
-    <div class="flex justify-center gap-5">
+    <div class="flex justify-center gap-10">
         <div
             class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none bg-white p-3">
             <div
