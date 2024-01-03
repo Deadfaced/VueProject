@@ -4,9 +4,9 @@
       <div class="mx-10 flex items">
         <img class="my-20 block rounded-md shadow-lg" :src="image" alt="Shop image" />
       </div>
-      <div class="relative">
-        <div class="flex flex-col md:flex-row">
-          <h2 class="mb-2 text-2xl font-black text-white">{{ name }}</h2>
+      <div class="relative mr-1">
+        <div class="flex flex-col md:flex-row mt-5">
+          <h2 class="my-5 text-2xl font-black text-white">{{ name }}</h2>
         </div>
         <p class="mt-3 mr-2 font-sans text-base tracking-normal text-white">{{ shortenedDescription }}</p>
         <div class="flex flex-col md:flex-row md:items-end">
@@ -47,10 +47,10 @@ export default {
   },
   computed: {
     isLongText() {
-      return this.description.length > 50;
+      return this.description.length > 100;
     },
     shortenedDescription() {
-      return this.isLongText ? this.description.slice(0, 50) + '...' : this.description;
+      return this.isLongText ? this.description.slice(0, 100) + '...' : this.description;
     },
   },
 };

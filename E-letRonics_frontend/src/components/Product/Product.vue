@@ -19,7 +19,7 @@
           <div class="flex items-center justify-between price">
             <p>  
       </p>
-            <Quantity v-if="item && item.quantity < 5" :quantity="item ? item.quantity : 0"></Quantity>
+            <Quantity v-if="item && item.quantity < 5" :quantity="item ? item.quantity : -5"></Quantity>
         </div>
         <div class="flex justify-between items-center mt-2.5 mb-5">
           <Rating :rating="item ? item.rating : 0" :maxStars="5"></Rating>

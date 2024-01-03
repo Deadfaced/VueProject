@@ -5,20 +5,27 @@
     <h2 class="text-4xl text-white mt-8 ml-14">My Cart</h2>
     <div class="flex justify-center items-start space-x-4 mt-4">
       <div class="flex flex-col">
+        
+        <div v-if="cartStore.cart.length === 0" class="checkout-item empty-cart mb-4">
+          <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="Empty Cart" />
+        </div>
         <div v-for="item in cartStore.CartItemProperties" :key="item.id" class="mb-4">
           <CheckoutCard :id="item.id" :image="item.image" :name="item.name" :description="item.description"
             :price="item.price" :cartQty="item.cartQty" :item="item"></CheckoutCard>
+          </div>
         </div>
-        <div class="flex justify-between mt-4 mb-8">
-          <router-link to="/shop" class="bg-gray-700 text-white px-4 py-2 rounded-md ml-4">Back</router-link>
-          <button @click="removeAllFromCart" class="bg-gray-700 text-white px-4 py-2 rounded-md mr-4">Empty Cart</button>
-        </div>
+        <div class="flex flex-col gap-2">
+          <div class="checkout-summary bg-neutral shadow-xl">
+          <SummaryCard></SummaryCard>
+          </div>
+          <div class="flex justify-between mb-8 gap-2">
+          <router-link to="/shop" class="bg-gray-700 text-white py-2 rounded-md w-15w text-center">Back</router-link>
+          <button @click="removeAllFromCart" class="bg-gray-700 text-white py-2 rounded-md w-15w">Empty Cart</button>
+          </div>
       </div>
-      <div class="checkout-summary bg-neutral shadow-xl">
-        <SummaryCard></SummaryCard>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script setup>
@@ -75,6 +82,7 @@ onMounted(async () => {
     align-items: center;
 }
 .checkout-summary {
+    background: #2A323C;
     padding: 20px;
     border-radius: 10px;
 }
@@ -83,4 +91,5 @@ onMounted(async () => {
     display: block;
     margin: 0 auto;
 }
+
 </style>

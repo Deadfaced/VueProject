@@ -20,6 +20,7 @@ export default {
 		},
 		width: {
 			"10w": "10vw",
+			"15w": "15vw",
 			"20w": "20vw",
 			"30w": "30vw",
 			"40w": "40vw",
