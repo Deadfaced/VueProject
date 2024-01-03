@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center bg-gradient-to-b from-black via-transparent to-indigo-900 text-white">
+  <div class="min-h-screen flex flex-col items-center">
     <div class="galaxy">
             <div class="stars1"></div>
             <div class="stars2"></div>
             <div class="stars3"></div>
     </div>
-    <AboutCard class="mb-4"></AboutCard>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 mt-10 w-full">
+    <AboutCard class="mb-8"></AboutCard>
+    <div class="grid grid-cols-1 md:grid-cols-3 px-8">
       <MissionCard></MissionCard>
       <VisionCard></VisionCard>
       <ValuesCard></ValuesCard>

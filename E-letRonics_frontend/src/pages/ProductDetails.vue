@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto p-4 text-center">
     <Success />
-    <div v-if="product" class="shadow-lg rounded-lg overflow-hidden">
+    <div v-if="product" class="rounded-lg overflow-hidden">
       <h2 class="text-3xl font-bold my-4">{{ product.name }}</h2>
         <div class="lg:mx-60 sm:mx-20">
           <img :src="product.image || 'https://via.placeholder.com/400'"
@@ -11,8 +11,8 @@
            <p class="text-gray-600 my-4">{{ product.description }}</p>
 
           <div class="flex justify-between mt-4">
-            <span class="text-lg font-bold text-3x1 text-yellow-500">{{ product.price }} €</span>
-            <span class="text-lg font-bold text-3x1 text-yellow-500">Rating: {{ product.rating }}.0</span>
+            <span class="text-lg font-bold text-3x1">{{ product.price }} €</span>
+            <span class="text-lg font-bold text-3x1">Rating: {{ product.rating }}.0</span>
           </div>
 
         <div class="flex items-center justify-end">
@@ -31,8 +31,7 @@
         <ProductList />
       </div>
     </div>
-  </div>
-  <h1 class="text-2xl font-bold text-center">Reviews</h1>
+    <h1 class="text-2xl font-bold text-center">Reviews</h1>
   <div class="flex flex-col items-center mt-12">
     <div class="flex-1 mb-4 review-card">
       <div class="flex items-center p-8 rounded-lg shadow-lg bg-slate-700">
@@ -64,6 +63,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
