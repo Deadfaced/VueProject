@@ -90,5 +90,15 @@ export const useCartStore = defineStore({
             localStorage.removeItem('discountPercentage');
             localStorage.removeItem('discountValue');
         },
+
+        clearCart() {
+            this.cart = [];
+            this.totalPrice = 0;
+            localStorage.removeItem('cart');
+            localStorage.removeItem('totalPrice');
+            localStorage.removeItem('cartItemCount');
+            this.clearCoupon();
+            this.CartItemProperties = [];
+        },
     },
 });

@@ -57,6 +57,7 @@ export default {
                 console.log(response);
                 if (response.success) {
                     alert(response.message);
+                    cartStore.clearCart();
                 } else {
                     alert(response.message);
                 }

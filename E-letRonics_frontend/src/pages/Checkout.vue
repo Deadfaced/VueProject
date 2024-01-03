@@ -45,11 +45,7 @@ async function fetchCartItems() {
 }
 
 function removeAllFromCart() {
-  cartStore.cart = [];
-  cartStore.totalPrice = 0;
-  cartStore.CartItemProperties = [];
-  localStorage.removeItem('cart');
-  localStorage.removeItem('totalPrice');
+  cartStore.clearCart();
 };
 
 function calculateTotalPrice() {
