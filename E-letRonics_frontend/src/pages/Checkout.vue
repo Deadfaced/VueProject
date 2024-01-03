@@ -19,8 +19,8 @@
           <SummaryCard></SummaryCard>
           </div>
           <div class="flex justify-between mb-8 gap-2">
-          <router-link to="/shop" class="bg-gray-700 text-white py-2 rounded-md w-15w text-center">Back</router-link>
-          <button @click="removeAllFromCart" class="bg-gray-700 text-white py-2 rounded-md w-15w">Empty Cart</button>
+          <router-link to="/shop" class="bg-neutral text-white py-2 rounded-md w-15w text-center">Back</router-link>
+          <button @click="removeAllFromCart" class="bg-neutral text-white py-2 rounded-md w-15w">Empty Cart</button>
           </div>
       </div>
       </div>
