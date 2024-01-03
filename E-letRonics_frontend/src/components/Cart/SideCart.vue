@@ -17,7 +17,7 @@ function deleteCartItem(itemId) {
 <template>
   <div>
     <div class="fixed inset-0 bg-black opacity-50 left-100 z-10" @click="$emit('close')"></div>
-    <div class="fixed top-0 right-0 bottom-0 shadow-right w-80 h-full z-50 bg-base-200 text-base-content flex flex-col">
+    <div class="fixed top-0 right-0 bottom-0 shadow-right h-full z-50 bg-base-200 text-base-content flex flex-col w">
       <button class="ml-auto mr-2 text-white hover:text-gray-300" @click="$emit('close')">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
           stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" class="w-6 h-6">
@@ -43,8 +43,8 @@ function deleteCartItem(itemId) {
             alt="Empty Cart" class="mt-4">
         </div>
         <ul>
-          <li>
-            <card-cart v-if="cartStore.CartItemProperties.length > 0" v-for="item in cartStore.CartItemProperties" :key="item.id" :id="item.id" :image="item.image" :name="item.name"
+          <li v-if="cartStore.CartItemProperties.length > 0">
+            <card-cart v-for="item in cartStore.CartItemProperties" :key="item.id" :id="item.id" :image="item.image" :name="item.name"
               :cartQty="item.cartQty" :price="item.price" :availability="item.availability" :totalPrice="item.totalPrice" @delete="deleteCartItem">
             </card-cart>
           </li>
@@ -61,4 +61,8 @@ function deleteCartItem(itemId) {
 </template>
 
 
-<style scoped></style>
+<style scoped>
+.w {
+  min-width: 22rem;
+}
+</style>
