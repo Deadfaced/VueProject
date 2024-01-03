@@ -4,7 +4,7 @@ import Footer from './components/Navigation/Footer.vue'
 </script>
 
 <template>
-    <div class="bg-gradient-to-b from-black via-transparent to-indigo-900">
+    <div class="bg-gradient-to-b from-black via-transparent to-slate-600">
         <Navbar />
         <div class="pageContent flex flex-col min-h-screen">
             <router-view></router-view>
